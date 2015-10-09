@@ -1,2 +1,2 @@
-# vin-react-starter-kit
-Starter kit for building a new React project
+# VinSolutions React Starter Kit
+Starter kit for building a new React project at VinSolutions
