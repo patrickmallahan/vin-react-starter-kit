@@ -28,7 +28,7 @@ class FuelSavingsResults extends React.Component {
                         </tr>
                         <tr>
                             <td>{this.props.savings.monthly}</td>
-                            <td>{this.props.savings.yearly}</td>
+                            <td>{this.props.savings.annual}</td>
                             <td>{this.props.savings.threeYear}</td>
                         </tr>
                     </tbody>

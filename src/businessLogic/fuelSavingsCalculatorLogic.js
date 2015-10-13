@@ -1,4 +1,5 @@
-import MathService from './math';
+import mathHelper from './mathHelper';
+import numberFormatter from './numberFormatter';
 
 class FuelSavingsCalculator {
     static calculateMilesDrivenPerMonth(milesDriven, milesDrivenTimeframe) {
@@ -27,7 +28,18 @@ class FuelSavingsCalculator {
         let newFuelCostPerMonth = this.calculateMonthlyCost(milesDrivenPerMonth, config.newPpg, config.newMpg);
         let savingsPerMonth = tradeFuelCostPerMonth - newFuelCostPerMonth;
 
-        return MathService.roundNumber(savingsPerMonth, 2);
+        return mathHelper.roundNumber(savingsPerMonth, 2);
+    }
+    //Returns savings object
+    static calculateSavings(config) {
+        let monthlySavings = this.calculateSavingsPerMonth(config);
+        let annualSavings = monthlySavings * 12;
+        let threeYearSavings = annualSavings * 3;
+        return {
+            monthly: numberFormatter.getCurrencyFormattedNumber(monthlySavings),
+            annual: numberFormatter.getCurrencyFormattedNumber(annualSavings),
+            threeYear: numberFormatter.getCurrencyFormattedNumber(threeYearSavings)
+        };
     }
 }
 

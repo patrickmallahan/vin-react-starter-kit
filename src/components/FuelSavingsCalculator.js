@@ -1,11 +1,11 @@
 import React from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
-import FuelSavingsCalculatorLogic from '../businessLogic/FuelSavingsCalculator';
+import FuelSavingsCalculatorLogic from '../businessLogic/FuelSavingsCalculatorLogic';
 
 class FuelSavingsCalculator extends React.Component {
     constructor(props) {
         super(props);
-        this.updateState = this.updateState.bind(this); //Why: https://github.com/goatslacker/alt/issues/283
+        this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://github.com/goatslacker/alt/issues/283
         this.state = {
             newMpg: '',
             tradeMpg: '',
@@ -18,7 +18,7 @@ class FuelSavingsCalculator extends React.Component {
             displayResults: false,
             savings: {
                 monthly: 0,
-                yearly: 0,
+                annual: 0,
                 threeYear: 0
             }
         };
@@ -28,8 +28,11 @@ class FuelSavingsCalculator extends React.Component {
         let field = event.target.name;
         let value = event.target.value;
         this.state[field] = value;
-        this.state.displayResults = this.necessaryDataIsEntered();
-        this.calculateSavings();
+        let necessaryDataIsEntered = this.necessaryDataIsEntered();
+        this.state.displayResults = necessaryDataIsEntered;
+        if (necessaryDataIsEntered) {
+            this.calculateSavings();
+        }
         return this.setState({field: value});
     }
     necessaryDataIsEntered() {
@@ -41,8 +44,7 @@ class FuelSavingsCalculator extends React.Component {
             && this.state.milesDrivenTimeframe;
     }
     calculateSavings() {
-        this.state.savings.monthly = FuelSavingsCalculatorLogic.calculateSavingsPerMonth(this.state);
-        debugger;
+        this.state.savings = FuelSavingsCalculatorLogic.calculateSavings(this.state);
         this.setState({ savings: this.state.savings });
     }
     render() {
@@ -93,8 +95,6 @@ class FuelSavingsCalculator extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-
-                <hr />
 
                 { this.state.displayResults ? <FuelSavingsResults savings={this.state.savings} /> : null }
             </div>

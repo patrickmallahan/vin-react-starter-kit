@@ -1,16 +1,17 @@
 "use strict";
 
 var gulp = require('gulp');
-var connect = require('gulp-connect'); //Runs a local dev server
-var open = require('gulp-open'); //Open a URL in a web browser
-var jasmine = require('gulp-jasmine');
+var connect = require('gulp-connect'); // Runs a local dev server
+var open = require('gulp-open'); // Open a URL in a web browser
+var jasmine = require('gulp-jasmine'); // Test JS
 var reporters = require('jasmine-reporters');
+var sass = require('gulp-sass'); // Compiles SASS to CSS
 var browserify = require('browserify'); // Bundles JS
 var reactify = require('reactify');  // Transforms React JSX to JS
 var babelify = require('babelify');  // Compile ES6 to ES5 using Browserify
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
-var concat = require('gulp-concat'); //Concatenates files
-var lint = require('gulp-eslint'); //Lint JS files, including JSX
+var concat = require('gulp-concat'); // Concatenates files
+var lint = require('gulp-eslint'); // Lint JS files, including JSX
 
 var config = {
 	port: 9005,
@@ -25,6 +26,7 @@ var config = {
       		'node_modules/bootstrap/dist/css/bootstrap.min.css',
       		'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
     	],
+    	sass: './src/styles/*.sass',
 		dist: './dist',
 		mainJs: './src/main.js'
 	}
@@ -45,6 +47,13 @@ gulp.task('test', function() {
         .pipe(jasmine({
             reporter: new reporters.JUnitXmlReporter()
         }));  
+});
+
+gulp.task('sass', function () {
+  gulp.src(config.paths.sass)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest(config.paths.dist + '/css/'))
+	.pipe(connect.reload());
 });
 
 gulp.task('open', ['connect'], function() {
@@ -69,11 +78,11 @@ gulp.task('js', function() {
 		.pipe(connect.reload());
 });
 
-gulp.task('css', function() {
-	gulp.src(config.paths.css)
-		.pipe(concat('bundle.css'))
-		.pipe(gulp.dest(config.paths.dist + '/css'));
-});
+// gulp.task('css', function() {
+// 	gulp.src(config.paths.css)
+// 		.pipe(concat('bundle.css'))
+// 		.pipe(gulp.dest(config.paths.dist + '/css'));
+// });
 
 gulp.task('lint', function() {
 	return gulp.src(config.paths.js)
@@ -84,6 +93,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
 	gulp.watch(config.paths.js, ['js', 'lint']);
+	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'open', 'watch']);
