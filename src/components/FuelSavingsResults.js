@@ -5,35 +5,34 @@ class FuelSavingsResults extends React.Component {
         super(props);
     }
     render() {
+        let savingsExist = this.props.savings.monthly.replace('$', '') > 0;
+        let savingsClass = savingsExist ? 'savings' : 'loss';
+        let resultLabel = savingsExist ? 'Savings' : 'Loss';
+
         return (
-           <div>
-                <div className="green">
-                    <table className="fuel-savings">
-                        <tbody>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Savings</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <table id="fuel-savings">
-                    <tbody>
-                        <tr>
-                            <td>Monthly</td>
-                            <td>1 Year</td>
-                            <td>3 Year</td>
-                        </tr>
-                        <tr>
-                            <td>{this.props.savings.monthly}</td>
-                            <td>{this.props.savings.annual}</td>
-                            <td>{this.props.savings.threeYear}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td className="fuel-savings-label">{resultLabel}</td>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Monthly</td>
+                                        <td>1 Year</td>
+                                        <td>3 Year</td>
+                                    </tr>
+                                    <tr>
+                                        <td className={savingsClass}>{this.props.savings.monthly}</td>
+                                        <td className={savingsClass}>{this.props.savings.annual}</td>
+                                        <td className={savingsClass}>{this.props.savings.threeYear}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         );
     }
 }

@@ -96,6 +96,8 @@ class FuelSavingsCalculator extends React.Component {
                     </tbody>
                 </table>
 
+                <hr/>
+
                 { this.state.displayResults ? <FuelSavingsResults savings={this.state.savings} /> : null }
             </div>
         );
