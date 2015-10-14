@@ -7,7 +7,7 @@
     "prebuild": "echo \"prebuild\"",
     "build": "echo \"build\"",
     "postbuild": "echo \"postbuild\"",
-    "test": "mocha --compilers js:babel/register"
+    "test": "mocha --growl --compilers js:babel/register"
   },
   "author": "Cory House",
   "license": "ISC",
@@ -30,6 +30,8 @@
     "babelify": "^6.3.0",
     "chai": "^3.3.0",
     "gulp-jasmine": "^2.1.0",
-    "gulp-sass": "^2.0.4"
+    "gulp-mocha": "^2.1.3",
+    "gulp-sass": "^2.0.4",
+    "gulp-shell": "^0.5.0"
   }
 }

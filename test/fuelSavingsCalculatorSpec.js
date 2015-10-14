@@ -1,4 +1,4 @@
-import calculator from '../src/businessLogic/fuelSavingsCalculatorLogic';
+import calculator from '../src/businessLogic/fuelSavingsCalculator';
 import {expect} from 'chai';
 
 describe('Fuel Savings Calculator', function () {

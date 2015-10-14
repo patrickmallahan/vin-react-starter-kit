@@ -1,5 +1,5 @@
 import mathHelper from './mathHelper';
-import numberFormatter from './numberFormatter';
+import NumberFormatter from './numberFormatter';
 
 class FuelSavingsCalculator {
     static calculateMilesDrivenPerMonth(milesDriven, milesDrivenTimeframe) {
@@ -36,9 +36,9 @@ class FuelSavingsCalculator {
         let annualSavings = monthlySavings * 12;
         let threeYearSavings = annualSavings * 3;
         return {
-            monthly: numberFormatter.getCurrencyFormattedNumber(monthlySavings),
-            annual: numberFormatter.getCurrencyFormattedNumber(annualSavings),
-            threeYear: numberFormatter.getCurrencyFormattedNumber(threeYearSavings)
+            monthly: NumberFormatter.getCurrencyFormattedNumber(monthlySavings),
+            annual: NumberFormatter.getCurrencyFormattedNumber(annualSavings),
+            threeYear: NumberFormatter.getCurrencyFormattedNumber(threeYearSavings)
         };
     }
 }

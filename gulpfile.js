@@ -3,8 +3,6 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect'); // Runs a local dev server
 var open = require('gulp-open'); // Open a URL in a web browser
-var jasmine = require('gulp-jasmine'); // Test JS
-var reporters = require('jasmine-reporters');
 var sass = require('gulp-sass'); // Compiles SASS to CSS
 var browserify = require('browserify'); // Bundles JS
 var reactify = require('reactify');  // Transforms React JSX to JS
@@ -12,6 +10,8 @@ var babelify = require('babelify');  // Compile ES6 to ES5 using Browserify
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 var concat = require('gulp-concat'); // Concatenates files
 var lint = require('gulp-eslint'); // Lint JS files, including JSX
+var mocha = require('gulp-mocha'); //Test JS
+var babel = require('babel/register'); //Register Babel for Mocha
 
 var config = {
 	port: 9005,
@@ -40,13 +40,6 @@ gulp.task('connect', function() {
 		base: config.devBaseUrl,
 		livereload: true
 	});
-});
-
-gulp.task('test', function() {
-	gulp.src('./**/**/Spec.js') 
-        .pipe(jasmine({
-            reporter: new reporters.JUnitXmlReporter()
-        }));  
 });
 
 gulp.task('sass', function () {
@@ -90,10 +83,15 @@ gulp.task('lint', function() {
 		.pipe(lint.format());
 });
 
+gulp.task('test', function() {
+	return gulp.src('./test/fuelSavingsCalculatorSpec.js')
+		.pipe(mocha());
+})
+
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint']);
+	gulp.watch(config.paths.js, ['js', 'lint', 'test']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'open', 'watch']);
