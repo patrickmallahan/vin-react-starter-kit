@@ -84,7 +84,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', function() {
-	return gulp.src('./test/fuelSavingsCalculatorSpec.js')
+	return gulp.src('./src/**/*Spec.js')
 		.pipe(mocha());
 })
 
