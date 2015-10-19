@@ -1,4 +1,4 @@
-# VinSolutions React Starter Kit
+# VinSolutions JavaScript Starter Kit
 Starter kit for building a new React project at VinSolutions. This starter kit makes it easy to start a robust new project using modern tooling including:
 
 * [React](https://facebook.github.io/react/) for rich, fast, client-side components  
