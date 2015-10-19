@@ -4,14 +4,20 @@ var gulp = require('gulp');
 var connect = require('gulp-connect'); // Runs a local dev server
 var open = require('gulp-open'); // Open a URL in a web browser
 var sass = require('gulp-sass'); // Compiles SASS to CSS
-var browserify = require('browserify'); // Bundles JS
+var browserify = require('browserify'); // Wraps npm modules so they can be run in the browser
 var reactify = require('reactify');  // Transforms React JSX to JS
-var babelify = require('babelify');  // Compile ES6 to ES5 using Browserify
+var babelify = require('babelify');  // Compile ES6 to ES5 using the Babel transform in Browserify
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 var concat = require('gulp-concat'); // Concatenates files
 var lint = require('gulp-eslint'); // Lint JS files, including JSX
-var mocha = require('gulp-mocha'); //Test JS
-var babel = require('babel/register'); //Register Babel for Mocha
+var mocha = require('gulp-mocha'); // Test JS
+var babel = require('babel/register'); // Register Babel for Mocha
+//TODO: Minify for prod
+//var minify = require('minifyify'); // Minify JS
+var buffer = require('vinyl-buffer'); // Convert from streaming to buffered vinyl object
+var del = require('del');
+var debug = require('gulp-debug'); // Useful for debugging Gulp
+var shell = require('gulp-shell'); // Run shell commands from within gulp
 
 var config = {
 	port: 9005,
@@ -20,12 +26,14 @@ var config = {
 		html: './src/*.html',
 		js: [
 			'./src/**/*.js',
-			'!./src/**/*Spec.js'
+			'!./src/**/*.spec.js'
 		],
 		css: [
       		'node_modules/bootstrap/dist/css/bootstrap.min.css',
       		'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
     	],
+    	coverage: 'coverage',
+    	tests: './src/**/*.spec.js',
     	sass: './src/styles/*.sass',
 		dist: './dist',
 		mainJs: './src/main.js'
@@ -67,10 +75,14 @@ gulp.task('js', function() {
 		.bundle()
 		.on('error', console.error.bind(console))
 		.pipe(source('bundle.js'))
+		//.pipe(buffer()) //convert from streaming to buffered vinyl object
+		//.pipe(minify())
 		.pipe(gulp.dest(config.paths.dist + '/scripts'))
 		.pipe(connect.reload());
 });
 
+//This task is useful for bundling css from libraries (like KendoUI, Bootstrap, etc)
+//We should use SASS to write our own stylesheets.
 // gulp.task('css', function() {
 // 	gulp.src(config.paths.css)
 // 		.pipe(concat('bundle.css'))
@@ -84,13 +96,22 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', function() {
-	return gulp.src('./src/**/*Spec.js')
+	return gulp.src(config.paths.tests)
 		.pipe(mocha());
-})
+});
+
+//TODO: Figure out how to call this before shell task below.
+gulp.task('clean-coverage', function(cb) {
+    del(['coverage'], cb);
+});
+
+//alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
+gulp.task('cover', shell.task(['npm run coverage-es6']));
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint', 'test']);
+	gulp.watch(config.paths.js, ['js', 'lint', 'cover']);
+	gulp.watch(config.paths.tests, ['test']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 

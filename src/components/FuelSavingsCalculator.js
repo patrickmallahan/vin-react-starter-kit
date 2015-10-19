@@ -5,7 +5,7 @@ import Calculator from '../businessLogic/FuelSavingsCalculator';
 class FuelSavingsCalculator extends React.Component {
     constructor(props) {
         super(props);
-        this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://github.com/goatslacker/alt/issues/283
+        this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding and https://github.com/goatslacker/alt/issues/283
         this.state = {
             newMpg: '',
             tradeMpg: '',

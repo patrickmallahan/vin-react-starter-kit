@@ -37862,10 +37862,15 @@ var MathHelper = (function () {
         key: 'addArray',
         value: function addArray(values) {
             //adds array of values passed.
+            if (values == null) {
+                return null;
+            }
+
             var total = 0;
-            $.each(values, function (index, value) {
-                total += parseInt(this.convertToPennies(value)); //do math in pennies to assure accuracy.
-            });
+            for (var i in values) {
+                total += parseInt(this.convertToPennies(values[i])); //do math in pennies to assure accuracy.
+            }
+
             return total / 100; //convert back into dollars
         }
     }, {
@@ -37957,6 +37962,10 @@ var NumberFormatter = (function () {
     }, {
         key: 'isInt',
         value: function isInt(n) {
+            if (n === '' || n === null) {
+                return false;
+            }
+
             return n % 1 === 0;
         }
     }, {
@@ -38009,7 +38018,7 @@ var FuelSavingsCalculator = (function (_React$Component) {
         _classCallCheck(this, FuelSavingsCalculator);
 
         _get(Object.getPrototypeOf(FuelSavingsCalculator.prototype), 'constructor', this).call(this, props);
-        this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://github.com/goatslacker/alt/issues/283
+        this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding and https://github.com/goatslacker/alt/issues/283
         this.state = {
             newMpg: '',
             tradeMpg: '',
@@ -38331,6 +38340,11 @@ var FuelSavingsResults = (function (_React$Component) {
     return FuelSavingsResults;
 })(_react2['default'].Component);
 
+FuelSavingsResults.propTypes = {
+    savings: _react2['default'].PropTypes.object.isRequired,
+    videoSrc: _react2['default'].PropTypes.string.isRequired
+};
+
 exports['default'] = FuelSavingsResults;
 module.exports = exports['default'];
 
@@ -38351,8 +38365,6 @@ var _react2 = _interopRequireDefault(_react);
 var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
-
-//this pulls in dup React instance for some reason, so commenting out for now.
 
 _react2['default'].render(_react2['default'].createElement(_componentsFuelSavingsCalculator2['default'], null), document.getElementById('app'));
 
