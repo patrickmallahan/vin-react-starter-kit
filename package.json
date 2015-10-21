@@ -4,8 +4,10 @@
   "description": "Starter kit for creating new client-side applications at Vinsolutions",
   "main": "main.js",
   "scripts": {
-    "coverage": "istanbul cover _mocha -- --compilers js:babel/register --recursive ./src",
-    "coverage-es6": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover _mocha --colors true --recursive \"./src\""
+    "start": "gulp",
+    "test": "mocha --compilers js:babel/register --recursive \"./src\" --colors",
+    "coverage": "istanbul cover --color _mocha -- --compilers js:babel/register --recursive \"./src\" --colors",
+    "coverage-es6": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive \"./src\" --colors --reporter progress"
   },
   "author": "Cory House",
   "license": "ISC",

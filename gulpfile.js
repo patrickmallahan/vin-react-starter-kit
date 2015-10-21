@@ -15,7 +15,6 @@ var babel = require('babel/register'); // Register Babel for Mocha
 //TODO: Minify for prod
 //var minify = require('minifyify'); // Minify JS
 var buffer = require('vinyl-buffer'); // Convert from streaming to buffered vinyl object
-var del = require('del');
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
 
@@ -100,19 +99,34 @@ gulp.task('test', function() {
 		.pipe(mocha());
 });
 
-//TODO: Figure out how to call this before shell task below.
-gulp.task('clean-coverage', function(cb) {
-    del(['coverage'], cb);
-});
+/*This task simply calls a command stored in package.json.
+  It uses Istanbul to create code coverage reports.
+  This version runs coverage on the code *after* it's compiled to ES5 by Babel
+  This means the resulting reports in /coverage show *compiled* code. 
+  This makes the reports from this pretty useless, though the coverage
+  numbers are generally valid.
+  Advantages: 
+	+ Output is colored, even when run from Gulp
+	+ More friendly error messages than ES6 version below when code can't be compiled
 
-//alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
-gulp.task('cover', shell.task(['npm run coverage-es6']));
+	Alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
+*/
+gulp.task('coverage', shell.task(['npm run coverage']));
+
+/*This task simply calls a command stored in package.json.
+  This version runs coverage on the code *before* it's compiled to ES5 by Babel
+  It uses Isparta, which is a wrapper over Istanbul project that supports code coverage for ES6.
+  Istanbul may add a preloader for ES6 in the future. https://github.com/douglasduteil/isparta/issues/31
+  Advantages:
+	+ Reports in coverage show the actual code you wrote instead of compiled code
+*/
+gulp.task('coverage-es6', shell.task(['npm run coverage-es6']));
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint', 'cover']);
-	gulp.watch(config.paths.tests, ['test']);
+	gulp.watch(config.paths.js, ['js', 'lint', 'test', 'coverage']);
+	gulp.watch(config.paths.tests, ['test', 'coverage']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage', 'open', 'watch']);
