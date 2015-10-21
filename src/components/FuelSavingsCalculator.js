@@ -7,10 +7,10 @@ class FuelSavingsCalculator extends React.Component {
         super(props);
         this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding and https://github.com/goatslacker/alt/issues/283
         this.state = {
-            newMpg: '',
-            tradeMpg: '',
-            newPpg: '',
-            milesDriven: '',
+            newMpg: null,
+            tradeMpg: null,
+            newPpg: null,
+            milesDriven: null,
             milesDrivenTimeframe: 'week',
             invalidNewMpgVisible: false,
             invalidTradeMpgVisible: false,
@@ -36,12 +36,11 @@ class FuelSavingsCalculator extends React.Component {
         return this.setState({field: value});
     }
     necessaryDataIsEntered() {
-        return this.state.newMpg
-            && this.state.tradeMpg
-            && this.state.newPpg
-            && this.state.tradePpg
-            && this.state.milesDriven
-            && this.state.milesDrivenTimeframe;
+        return this.state.newMpg > 0
+            && this.state.tradeMpg > 0
+            && this.state.newPpg > 0
+            && this.state.tradePpg > 0
+            && this.state.milesDriven > 0;
     }
     calculateSavings() {
         this.state.savings = Calculator.calculateSavings(this.state);
