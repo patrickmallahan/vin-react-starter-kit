@@ -22,5 +22,11 @@ describe('Number Formatter', () => {
 		it('strips commas and decimals', () => {
 			NumberFormatter.scrubFormatting('1,234.56').should.equal('123456');
 		});
-	})
+	});
+
+	describe('getFormattedNumber', () => {
+		it('returns 0 if passed 0', () => {
+			NumberFormatter.getFormattedNumber(0).should.equal(0);
+		});
+	});
 });

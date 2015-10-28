@@ -38,8 +38,7 @@ class FuelSavingsResults extends React.Component {
 }
 
 FuelSavingsResults.propTypes = {
-    savings: React.PropTypes.object.isRequired,
-    videoSrc: React.PropTypes.string.isRequired
+    savings: React.PropTypes.object.isRequired
 };
 
 export default FuelSavingsResults;

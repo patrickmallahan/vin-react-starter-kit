@@ -6,33 +6,42 @@ chai.should();
 describe('Fuel Savings Calculator', () => {
     describe("milesPerMonth", () => {
         it("converts a weekly timeframe to a monthly timeframe", () => {
+            //arrange
             var milesPerWeek = 100;
-            var milesPerMonth = Calculator.calculateMilesDrivenPerMonth(milesPerWeek, 'week');
+
+            //act
+            var milesPerMonth = Calculator().calculateMilesDrivenPerMonth(milesPerWeek, 'week');
+            
+            //assert
             milesPerMonth.should.equal(433.3333333333333);
         });
 
         it("returns a monthly timeframe untouched", () => {
+            //arrange
             var milesPerMonth = 300;
-            var milesPerMonthCalculated = Calculator.calculateMilesDrivenPerMonth(milesPerMonth, 'month');
+
+            //act
+            var milesPerMonthCalculated = Calculator().calculateMilesDrivenPerMonth(milesPerMonth, 'month');
+            
+            //assert
             milesPerMonthCalculated.should.equal(milesPerMonth); 
         });
 
         it("converts a yearly timeframe to a monthly timeframe", () => {
+            //arrange
             var milesPerYear = 1200;
-            var milesPerMonth = Calculator.calculateMilesDrivenPerMonth(milesPerYear, 'year');
+            
+            //act
+            var milesPerMonth = Calculator().calculateMilesDrivenPerMonth(milesPerYear, 'year');
+            
+            //assert
             milesPerMonth.should.equal(100);
-        });
-    });
-
-    describe("calculateMonthlyCost", () => {
-        it("calculates 100 commute miles/month at 3.50/gallon at 20mpg to equal 17.5", () => {
-            var monthlyCost = Calculator.calculateMonthlyCost(100, 3.50, 20);
-            monthlyCost.should.equal(17.5);
         });
     });
 
     describe("calculateSavingsPerMonth", () => {
         it("returns 29.93 in savings per month with these settings", () => {
+            //arrange
             var settings = {
                 tradePpg: 3.75,
                 tradeMpg: 24,
@@ -42,11 +51,15 @@ describe('Fuel Savings Calculator', () => {
                 milesDrivenTimeframe: 'week'
             };
 
-            var savingsPerMonth = Calculator.calculateSavingsPerMonth(settings);
+            //act
+            var savingsPerMonth = Calculator().calculateSavingsPerMonth(settings);
+            
+            //assert
             savingsPerMonth.should.equal(29.93);
         });
 
         it("returns 40.83 in savings per month with these settings", () => {
+            //arrange
             var settings = {
                 tradePpg: 4.15,
                 tradeMpg: 24,
@@ -56,11 +69,15 @@ describe('Fuel Savings Calculator', () => {
                 milesDrivenTimeframe: 'month'
             };
 
-            var savingsPerMonth = Calculator.calculateSavingsPerMonth(settings);
+            //act
+            var savingsPerMonth = Calculator().calculateSavingsPerMonth(settings);
+            
+            //assert
             savingsPerMonth.should.equal(40.83);
         });
 
         it("returns -157.12 in loss per month with these settings", () => {
+            //arrange
             var settings = {
                 tradePpg: 3.15,
                 tradeMpg: 40,
@@ -70,7 +87,10 @@ describe('Fuel Savings Calculator', () => {
                 milesDrivenTimeframe: 'year'
             };
 
-            var savingsPerMonth = Calculator.calculateSavingsPerMonth(settings);
+            //act
+            var savingsPerMonth = Calculator().calculateSavingsPerMonth(settings);
+            
+            //assert
             savingsPerMonth.should.equal(-157.12);
         });
     });

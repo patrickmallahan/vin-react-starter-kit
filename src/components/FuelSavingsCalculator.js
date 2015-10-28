@@ -1,6 +1,6 @@
 import React from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
-import Calculator from '../businessLogic/FuelSavingsCalculator';
+import Calculator from '../businessLogic/fuelSavingsCalculator';
 
 class FuelSavingsCalculator extends React.Component {
     constructor(props) {
@@ -23,6 +23,7 @@ class FuelSavingsCalculator extends React.Component {
             }
         };
     }
+
     //Generic change handler
     updateState(event) {
         let field = event.target.name;
@@ -35,6 +36,7 @@ class FuelSavingsCalculator extends React.Component {
         }
         return this.setState({field: value});
     }
+
     necessaryDataIsEntered() {
         return this.state.newMpg > 0
             && this.state.tradeMpg > 0
@@ -42,10 +44,13 @@ class FuelSavingsCalculator extends React.Component {
             && this.state.tradePpg > 0
             && this.state.milesDriven > 0;
     }
+
     calculateSavings() {
-        this.state.savings = Calculator.calculateSavings(this.state);
+        var calc = Calculator();
+        this.state.savings = calc.calculateSavings(this.state);
         this.setState({ savings: this.state.savings });
     }
+
     render() {
         return (
             <div>
