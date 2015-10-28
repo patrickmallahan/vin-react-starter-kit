@@ -1,7 +1,7 @@
-import FuelSavingsCalculator from './components/FuelSavingsCalculator';
+import FuelSavingsCalculatorForm from './components/FuelSavingsCalculatorForm';
 import React from 'react';
 import {render} from 'react-dom'; 
 
 if (typeof document !== 'undefined') { //necessary to keep Mocha from bombing
-	render(<FuelSavingsCalculator />, document.getElementById('app'));
+	render(<FuelSavingsCalculatorForm />, document.getElementById('app'));
 }

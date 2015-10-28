@@ -5,9 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "gulp",
-    "test": "mocha --compilers js:babel/register --recursive \"./src\" --colors",
-    "coverage": "istanbul cover --color _mocha -- --compilers js:babel/register --recursive \"./src\" --colors",
-    "coverage-es6": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive \"./src\" --colors --reporter progress",
+    "test": "mocha --compilers js:babel/register --recursive --colors",
+    "coverage": "istanbul cover --color _mocha -- --compilers js:babel/register --recursive --colors",
+    "coverage-es6": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive --colors --reporter progress",
     "open-coverage": "open coverage/lcov-report/index.html"
   },
   "author": "Cory House",
