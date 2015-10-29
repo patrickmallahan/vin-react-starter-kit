@@ -100,7 +100,7 @@ gulp.task('test', function() {
 });
 
 /*This task simply calls a command stored in package.json.
-  It uses Istanbul to create code coverage reports.
+  It uses Mocha with Istanbul to run tests and create code coverage reports.
   This version runs coverage on the code *after* it's compiled to ES5 by Babel
   This means the resulting reports in /coverage show *compiled* code. 
   This makes the reports from this pretty useless, though the coverage
@@ -116,17 +116,24 @@ gulp.task('coverage', shell.task(['npm run coverage']));
 /*This task simply calls a command stored in package.json.
   This version runs coverage on the code *before* it's compiled to ES5 by Babel
   It uses Isparta, which is a wrapper over Istanbul project that supports code coverage for ES6.
+  Since this shows code coverage numbers on the code you wrote, it should be used as the default
+  because its stats are obviously most accurate. However, if you're having issues, the test task
+  above often produces more useful error messages, but with slightly less accurate code coverage
+  information since the code coverage is calculated on the compiled ES5 code instead of the ES6 you wrote. 
+  Note: This command throws a "transformation error" because I have to reference the full path to _mocha
+  in this command to make windows happy (see the coverage-es6 task in package.json). On Mac, I can
+  run _mocha without a path just fine because it lands properly in .bin there.
   Istanbul may add a preloader for ES6 in the future. https://github.com/douglasduteil/isparta/issues/31
   Advantages:
-	+ Reports in coverage show the actual code you wrote instead of compiled code
+	+ Reports in coverage show the actual code you wrote (instead of your code compiled down to ES5).
 */
 gulp.task('coverage-es6', shell.task(['npm run coverage-es6']));
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint', 'test', 'coverage']);
-	gulp.watch(config.paths.tests, ['test', 'coverage']);
+	gulp.watch(config.paths.js, ['js', 'lint', 'test', 'coverage-es6']);
+	gulp.watch(config.paths.tests, ['test', 'coverage-es6']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage-es6', 'open', 'watch']);
