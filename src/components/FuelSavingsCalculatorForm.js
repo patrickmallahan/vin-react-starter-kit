@@ -2,7 +2,7 @@ import React from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import Calculator from '../businessLogic/fuelSavingsCalculator';
 
-class FuelSavingsCalculator extends React.Component {
+class FuelSavingsCalculatorForm extends React.Component {
     constructor(props) {
         super(props);
         this.updateState = this.updateState.bind(this); //Avoids having to manually bind to this below. Here's why: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding and https://github.com/goatslacker/alt/issues/283
@@ -26,6 +26,7 @@ class FuelSavingsCalculator extends React.Component {
 
     //Generic change handler
     updateState(event) {
+        debugger;
         let field = event.target.name;
         let value = event.target.value;
         this.state[field] = value;
@@ -108,4 +109,4 @@ class FuelSavingsCalculator extends React.Component {
     }
 }
 
-export default FuelSavingsCalculator;
+export default FuelSavingsCalculatorForm;
