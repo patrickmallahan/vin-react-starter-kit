@@ -61,6 +61,11 @@ gulp.task('open', ['connect'], function() {
 		.pipe(open({ uri: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
+gulp.task('open-coverage', function() {
+	gulp.src('coverage/lcov-report/index.html')
+		.pipe(open());
+});
+
 gulp.task('html', function() {
 	gulp.src(config.paths.html)
 		.pipe(gulp.dest(config.paths.dist))
@@ -136,4 +141,4 @@ gulp.task('watch', function() {
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage-es6', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage-es6', 'open', 'open-coverage', 'watch']);
