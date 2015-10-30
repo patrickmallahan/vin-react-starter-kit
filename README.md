@@ -14,6 +14,15 @@ Starter kit for building a new React project at VinSolutions. This starter kit m
 The starter kit includes a working example app that puts all of the above to use.
 
 # Get Started
-1. Clone the project from github
-2. npm install
-3. gulp
+1. Clone the project from GitHub
+2. `npm install`
+3. `gulp`
+
+# Testing
+Streamlined automated testing is a core feature of this starter kit. All tests are placed in files that end in .spec.js. They are placed in the same directory as the file under test. Why?
++ The existence of tests is highly visible
++ Easy to open since they're in the same folder as the file you're working with
++ Easy to create new test files when creating new source files
++ Short import paths are easy to type and less brittle. 
++ As files are moved, it's easy to move tests alongside.
+
