@@ -14,7 +14,6 @@ var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
 //TODO: Minify for prod
 //var minify = require('minifyify'); // Minify JS
-var buffer = require('vinyl-buffer'); // Convert from streaming to buffered vinyl object
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
 
@@ -68,16 +67,25 @@ gulp.task('html', function() {
 });
 
 gulp.task('js', function() {
-	browserify(config.paths.mainJs)
-		.transform(babelify)
-		.transform(reactify)
-		.bundle()
-		.on('error', console.error.bind(console))
-		.pipe(source('bundle.js'))
-		//.pipe(buffer()) //convert from streaming to buffered vinyl object
-		//.pipe(minify())
-		.pipe(gulp.dest(config.paths.dist + '/scripts'))
-		.pipe(connect.reload());
+	//or, can run this on command line to compile babel, minify, and create separate bundle
+	//browserify ./src/main.js -d -t [ babelify ] -p [minifyify --map bundle.map.json --output ./dist/scripts/bundle.map.json] > ./dist/scripts/bundle.js
+
+	var bundler = new browserify({debug: true});
+	bundler.add(config.paths.mainJs);
+	bundler.transform('babelify');
+	bundler.plugin('minifyify', 
+		{
+			map: 'bundle.map.json',
+			output: './dist/scripts/bundle.map.json'
+		}
+	);
+	bundler.bundle(function (err, src, map) {
+	  // Can optionally add code here 
+	})
+	.on('error', console.error.bind(console))
+	.pipe(source('bundle.js'))
+	.pipe(gulp.dest(config.paths.dist + '/scripts'))
+	.pipe(connect.reload());
 });
 
 //This task is useful for bundling css from libraries (like KendoUI, Bootstrap, etc)
