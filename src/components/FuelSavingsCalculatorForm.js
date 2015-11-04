@@ -26,7 +26,6 @@ class FuelSavingsCalculatorForm extends React.Component {
 
     //Generic change handler
     updateState(event) {
-        debugger;
         let field = event.target.name;
         let value = event.target.value;
         this.state[field] = value;

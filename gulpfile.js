@@ -157,6 +157,6 @@ gulp.task('setup-prod-environment', function () {
     }
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'test', 'open', 'watch']);
 
-gulp.task('prod', ['setup-prod-environment', 'html', 'js', 'sass']);
+gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'test']);
