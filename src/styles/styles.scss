@@ -7,7 +7,9 @@ $vin-red: #ff0000;
 td { 
 	padding: 10px; 
 }
-h2 { color: $vin-blue; }
+h2 { 
+	color: $vin-blue; 
+}
 .savings { color: $vin-green; }
 .loss { color: $vin-red; }
 input.small { width: 46px; }

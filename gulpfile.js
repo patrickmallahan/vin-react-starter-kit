@@ -22,7 +22,7 @@ var config = {
 	devBaseUrl: 'http://localhost',
 	paths: {
 		html: './src/*.html',
-		js: [
+		js: [ 
 			'./src/**/*.js',
 			'!./src/**/*.spec.js'
 		],
