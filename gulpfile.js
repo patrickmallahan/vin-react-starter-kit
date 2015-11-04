@@ -60,11 +60,6 @@ gulp.task('open', ['connect'], function() {
 		.pipe(open({ uri: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
-gulp.task('open-coverage', function() {
-	gulp.src('coverage/lcov-report/index.html')
-		.pipe(open());
-});
-
 gulp.task('html', function() {
 	gulp.src(config.paths.html)
 		.pipe(gulp.dest(config.paths.dist))
@@ -107,7 +102,7 @@ gulp.task('lint', function() {
 		.pipe(lint.format());
 });
 
-gulp.task('test', function() {
+gulp.task('test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
 		.pipe(mocha());
 });
@@ -124,7 +119,7 @@ gulp.task('test', function() {
 
 	Alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
 */
-gulp.task('coverage', shell.task(['npm run coverage']));
+gulp.task('coverage-es5', shell.task(['npm run coverage']));
 
 /*This task simply calls a command stored in package.json.
   This version runs coverage on the code *before* it's compiled to ES5 by Babel
@@ -142,11 +137,28 @@ gulp.task('coverage', shell.task(['npm run coverage']));
 */
 gulp.task('coverage-es6', shell.task(['npm run coverage-es6']));
 
+gulp.task('open-coverage', function() {
+	gulp.src('coverage/lcov-report/index.html')
+		.pipe(open());
+});
+
+gulp.task('coverage', ['coverage-es6', 'open-coverage']);
+
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint', 'test', 'coverage-es6']);
-	gulp.watch(config.paths.tests, ['test', 'coverage-es6']);
+	gulp.watch(config.paths.js, ['js', 'lint', 'test']);
+	gulp.watch(config.paths.tests, ['test']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'coverage-es6', 'open', 'open-coverage', 'watch']);
+gulp.task('setup-prod-environment', function () {
+    process.stdout.write("Setting NODE_ENV to 'production'" + "\n");
+    process.env.NODE_ENV = 'production';
+    if (process.env.NODE_ENV != 'production') {
+        throw new Error("Failed to set NODE_ENV to production!!!");
+    }
+});
+
+gulp.task('default', ['html', 'js', 'sass', 'lint', 'test', 'open', 'watch']);
+
+gulp.task('prod', ['setup-prod-environment', 'html', 'js', 'sass']);
