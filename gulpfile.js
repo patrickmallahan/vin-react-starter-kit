@@ -32,7 +32,7 @@ var config = {
     	],
     	coverage: 'coverage',
     	tests: './src/**/*.spec.js',
-    	sass: './src/styles/*.sass',
+    	sass: './src/styles/*.scss',
 		dist: './dist',
 		mainJs: './src/main.js'
 	}
