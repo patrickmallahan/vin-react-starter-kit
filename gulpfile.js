@@ -12,8 +12,6 @@ var concat = require('gulp-concat'); // Concatenates files
 var lint = require('gulp-eslint'); // Lint JS files, including JSX
 var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
-//TODO: Minify for prod
-//var minify = require('minifyify'); // Minify JS
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
 
@@ -27,8 +25,8 @@ var config = {
 			'!./src/**/*.spec.js'
 		],
 		css: [
-				'node_modules/bootstrap/dist/css/bootstrap.min.css',
-				'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+			'node_modules/bootstrap/dist/css/bootstrap.min.css',
+			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
 		],
 		coverage: 'coverage',
 		tests: './src/**/*.spec.js',
@@ -124,7 +122,7 @@ gulp.task('test', function() {
 
 	Alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
 */
-gulp.task('coverage', shell.task(['npm run coverage']));
+gulp.task('coverage-es5', shell.task(['npm run coverage']));
 
 /*This task simply calls a command stored in package.json.
   This version runs coverage on the code *before* it's compiled to ES5 by Babel
