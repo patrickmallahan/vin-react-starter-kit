@@ -27,12 +27,12 @@ var config = {
 			'!./src/**/*.spec.js'
 		],
 		css: [
-      		'node_modules/bootstrap/dist/css/bootstrap.min.css',
-      		'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-    	],
-    	coverage: 'coverage',
-    	tests: './src/**/*.spec.js',
-    	sass: './src/styles/*.scss',
+				'node_modules/bootstrap/dist/css/bootstrap.min.css',
+				'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+		],
+		coverage: 'coverage',
+		tests: './src/**/*.spec.js',
+		sass: './src/styles/*.scss',
 		dist: './dist',
 		mainJs: './src/main.js'
 	}
