@@ -25,8 +25,19 @@ describe('Fuel Savings Calculator Results Component', () => {
 		});
 
 		it('display as loss when savings don\'t exist', () => {
-			var results = new FuelSavingsResults({});
-			
+			var props = {
+				savings: {
+					monthly: '-10',
+					annual: '-120',
+					threeYear: '-360'
+				}
+			};
+
+			var sut = React.createElement(FuelSavingsResults, props);
+			var html = ReactDOMServer.renderToStaticMarkup(sut);
+			let $ = cheerio.load(html);
+			var fuelSavingsLabel = $('.fuel-savings-label').html();
+			fuelSavingsLabel.should.equal('Loss');			
 		});
 	});
 });

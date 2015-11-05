@@ -9,9 +9,9 @@ let FuelSavingsResults = (props) => {
     let savingsClass = savingsExist ? 'savings' : 'loss';
     let resultLabel = savingsExist ? 'Savings' : 'Loss';
 
-    //Note that you can even exclude the return statement below if you entire component is
-    //composed within the parenthesies. Here return is necessary because some variables
-    //are set above.
+    //You can even exclude the return statement below if the entire component is
+    //composed within the parenthesies. Return is necessary here because some 
+    //variables are set above.
     return (
         <table>
             <tbody>
