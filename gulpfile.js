@@ -100,7 +100,12 @@ gulp.task('lint', function() {
 		.pipe(lint.format());
 });
 
-gulp.task('test', ['lint'], function() {
+gulp.task('test', function() {
+	return gulp.src(config.paths.tests)
+		.pipe(mocha());
+});
+
+gulp.task('test-and-lint', ['lint'], function() {
 	return gulp.src(config.paths.tests)
 		.pipe(mocha());
 });
@@ -144,8 +149,8 @@ gulp.task('coverage', ['coverage-es6', 'open-coverage']);
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint', 'test']);
-	gulp.watch(config.paths.tests, ['test']);
+	gulp.watch(config.paths.js, ['js', 'test-and-lint']);
+	gulp.watch(config.paths.tests, ['test-and-lint']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
@@ -159,4 +164,4 @@ gulp.task('setup-prod-environment', function () {
 
 gulp.task('default', ['html', 'js', 'sass', 'test', 'open', 'watch']);
 
-gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'test']);
+gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'test-and-lint']);
