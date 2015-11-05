@@ -21,8 +21,10 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.3",
+    "babel-plugin-react-transform": "^1.1.1",
     "babelify": "^6.3.0",
     "chai": "^3.3.0",
+    "cheerio": "^0.19.0",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
@@ -37,7 +39,10 @@
     "istanbul": "^0.3.22",
     "minifyify": "^7.1.0",
     "mocha": "^2.3.3",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
     "reactify": "^1.1.1",
+    "redbox-react": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }

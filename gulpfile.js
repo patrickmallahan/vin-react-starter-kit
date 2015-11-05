@@ -153,7 +153,7 @@ gulp.task('setup-prod-environment', function () {
     process.stdout.write("Setting NODE_ENV to 'production'" + "\n");
     process.env.NODE_ENV = 'production';
     if (process.env.NODE_ENV != 'production') {
-        throw new Error("Failed to set NODE_ENV to production!!!");
+        throw new Error("Failed to set NODE_ENV to production!");
     }
 });
 
