@@ -105,7 +105,7 @@ gulp.task('test', function() {
 		.pipe(mocha());
 });
 
-gulp.task('test-and-lint', ['lint'], function() {
+gulp.task('lint-and-test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
 		.pipe(mocha());
 });
@@ -147,10 +147,12 @@ gulp.task('open-coverage', function() {
 
 gulp.task('coverage', ['coverage-es6', 'open-coverage']);
 
+gulp.task('lint-test-cover', ['lint-and-test', 'coverage']);
+
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'test-and-lint']);
-	gulp.watch(config.paths.tests, ['test-and-lint']);
+	gulp.watch(config.paths.js, ['js', 'lint-test-cover']);
+	gulp.watch(config.paths.tests, ['lint-test-cover']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
@@ -162,6 +164,6 @@ gulp.task('setup-prod-environment', function () {
     }
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'test', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'sass', 'lint-test-cover', 'open', 'watch']);
 
-gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'test-and-lint']);
+gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'lint-test-cover', 'coverage']);
