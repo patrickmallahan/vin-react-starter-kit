@@ -4,6 +4,12 @@ import chai from 'chai';
 chai.should();
 
 describe('Number Formatter', () => {
+	describe('getCurrencyFormattedNumber', () => {
+		it('returns $5.50 when passed 5.5', () => {
+			NumberFormatter.getCurrencyFormattedNumber(5.5).should.equal("$5.50");
+		});
+	});
+
 	describe('isInt', () => {
 		it('returns true when passed 0', () => {
 			NumberFormatter.isInt(0).should.equal(true);
