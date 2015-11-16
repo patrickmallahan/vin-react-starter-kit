@@ -6,7 +6,7 @@ import NumberFormatter from './numberFormatter';
 //This declares a function with a private method.
 //The public function returns an object literal.
 //Could arguably be called FuelSavingCalculatorFactory.
-let FuelSavingsCalculator = function() {
+let fuelSavingsCalculator = function() {
     //private
     let calculateMonthlyCost = function(milesDrivenPerMonth, ppg, mpg) {
         let gallonsUsedPerMonth = milesDrivenPerMonth / mpg;
@@ -55,4 +55,4 @@ let FuelSavingsCalculator = function() {
     };
 };
 
-export default FuelSavingsCalculator;
+export default fuelSavingsCalculator;

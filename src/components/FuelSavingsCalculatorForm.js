@@ -1,6 +1,6 @@
 import React from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
-import Calculator from '../businessLogic/fuelSavingsCalculator';
+import calculator from '../businessLogic/fuelSavingsCalculator';
 
 class FuelSavingsCalculatorForm extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class FuelSavingsCalculatorForm extends React.Component {
     }
 
     calculateSavings() {
-        var calc = Calculator();
+        var calc = calculator();
         this.state.savings = calc.calculateSavings(this.state);
         this.setState({ savings: this.state.savings });
     }
