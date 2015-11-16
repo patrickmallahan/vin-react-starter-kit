@@ -4,7 +4,7 @@ Starter kit for building a new React project at VinSolutions. This starter kit m
 * [React](https://facebook.github.io/react/) for rich, fast, client-side components  
 * [Babel](http://babeljs.io) for compiling ES6 to ES5, so we can enjoy the new version of JavaScript today  
 * [Browserify](http://browserify.org/) for bundling all JS including npm packages for use in the browser  
-* [Mocha](http://mochajs.org) for automated tests
+* [Mocha](http://mochajs.org) for automated tests with [Chai](http://chaijs.com/) for assertions
 * [Istanbul](https://github.com/gotwarlost/istanbul) for code coverage data
 * [TrackJS](http://trackjs.com) for JS error tracking in production  
 * [ESLint](http://eslint.org/) for linting JS  
