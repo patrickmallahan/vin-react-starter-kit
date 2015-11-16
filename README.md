@@ -23,6 +23,6 @@ Streamlined automated testing is a core feature of this starter kit. All tests a
 + The existence of tests is highly visible
 + Easy to open since they're in the same folder as the file you're working with
 + Easy to create new test files when creating new source files
-+ Short import paths are easy to type and less brittle. 
-+ As files are moved, it's easy to move tests alongside.
++ Short import paths are easy to type and less brittle
++ As files are moved, it's easy to move tests alongside
 
