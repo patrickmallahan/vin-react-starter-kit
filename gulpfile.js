@@ -73,12 +73,17 @@ gulp.task('js', function() {
 	var bundler = new browserify({debug: true});
 	bundler.add(config.paths.mainJs);
 	bundler.transform('babelify');
-	bundler.plugin('minifyify', 
-		{
-			map: 'bundle.map.json',
-			output: './dist/scripts/bundle.map.json'
-		}
-	);
+
+	//Only minify for prod.
+	if (process.env.NODE_ENV == 'production') {
+		bundler.plugin('minifyify', 
+			{
+				map: 'bundle.map.json',
+				output: './dist/scripts/bundle.map.json'
+			}
+		);
+	}
+
 	bundler.bundle(function (err, src, map) {
 	  // Can optionally add code here 
 	})
