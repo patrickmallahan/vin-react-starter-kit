@@ -37,7 +37,9 @@ var config = {
 }
 
 //Start a local development server
-gulp.task('connect', function() {
+//Run related build tasks first to assure that the files
+//we want to serve are available.
+gulp.task('connect', ['html', 'js', 'sass', 'lint-test'], function() {
 	connect.server({
 		root: ['dist'],
 		port: config.port,
@@ -105,7 +107,7 @@ gulp.task('test', function() {
 		.pipe(mocha());
 });
 
-gulp.task('lint-and-test', ['lint'], function() {
+gulp.task('lint-test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
 		.pipe(mocha());
 });
@@ -147,12 +149,12 @@ gulp.task('open-coverage', function() {
 
 gulp.task('coverage', ['coverage-es6', 'open-coverage']);
 
-gulp.task('lint-test-cover', ['lint-and-test', 'coverage']);
+gulp.task('lint-test-cover', ['lint-test', 'coverage']);
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint-test-cover']);
-	gulp.watch(config.paths.tests, ['lint-test-cover']);
+	gulp.watch(config.paths.js, ['js', 'lint-test']);
+	gulp.watch(config.paths.tests, ['lint-test']);
 	gulp.watch(config.paths.sass, ['sass']);
 });
 
@@ -164,6 +166,6 @@ gulp.task('setup-prod-environment', function () {
     }
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'lint-test-cover', 'open', 'watch']);
+gulp.task('default', ['open', 'watch']);
 
-gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'lint-test-cover', 'coverage']);
+gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'lint-test', 'coverage']);
