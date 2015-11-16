@@ -1,5 +1,5 @@
 # VinSolutions JavaScript Starter Kit
-Starter kit for building a new React project at VinSolutions. This starter kit makes it easy to start a robust new project using modern tooling including:
+This is a starter kit for building a new React project at VinSolutions. The goal: Make it easy to start a robust new client-side app using modern tooling:
 
 * [React](https://facebook.github.io/react/) for rich, fast, client-side components  
 * [Babel](http://babeljs.io) for compiling ES6 to ES5, so we can enjoy the new version of JavaScript today  
