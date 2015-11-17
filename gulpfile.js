@@ -74,15 +74,19 @@ gulp.task('js', function() {
 	bundler.add(config.paths.mainJs);
 	bundler.transform('babelify');
 
-	//Only minify for prod.
-	if (process.env.NODE_ENV == 'production') {
-		bundler.plugin('minifyify', 
-			{
-				map: 'bundle.map.json',
-				output: './dist/scripts/bundle.map.json'
-			}
-		);
-	}
+	//Note that while a sourcemap is always generated,
+	//this only minifies when the NODE_ENV is prod.
+	//We're not minifying for the default (dev) task to speed builds.
+	//The sourcemap is always generated because it's still
+	//useful even without minification so that the original ES6 
+	//is displayed when debugging in the browser.
+	bundler.plugin('minifyify', 
+		{
+			map: 'bundle.map.json',
+			output: './dist/scripts/bundle.map.json',
+			minify: process.env.NODE_ENV == 'production'
+		}
+	);
 
 	bundler.bundle(function (err, src, map) {
 	  // Can optionally add code here 
@@ -173,4 +177,4 @@ gulp.task('setup-prod-environment', function () {
 
 gulp.task('default', ['open', 'watch']);
 
-gulp.task('build', ['setup-prod-environment', 'html', 'js', 'sass', 'lint-test', 'coverage']);
+gulp.task('build', ['setup-prod-environment', 'open', 'watch', 'coverage']);
