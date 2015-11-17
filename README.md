@@ -14,9 +14,10 @@ This is a starter kit for building a new React project at VinSolutions. The goal
 The starter kit includes a working example app that puts all of the above to use.
 
 ## Get Started
-1. Clone the project from GitHub (or download the zip if you prefer). I suggest installing [Git](https://git-scm.com/downloads) and using Git Bash for your command line work, but this will also work on the Window DOS command prompt)
-2. `npm install` - This will install all the necessary packages (listed in package.json). 
-3. `gulp` - This will run the automated build process, start up a webserver, and open the application in your default browser.
+1. The build process relies on NodeJS and npm, so first, [install Node](https://nodejs.org).
+2. Clone the project from GitHub (or download the zip if you prefer). I suggest installing [Git](https://git-scm.com/downloads) and using Git Bash for your command line work, but if you're not confortable with the Unix command line, this starter kit will also work on the Window DOS command prompt. To open a Windows command prompt, type `Win+r` and type `cmd` in the Run dialog.
+3. On your command line, cd to the root of this project and type `npm install` - This will install all the necessary packages which are listed in package.json. 
+4. Type `gulp` - This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically everytime you hit save.
 
 ## Testing
 Streamlined automated testing is a core feature of this starter kit. All tests are placed in files that end in .spec.js. They are placed in the same directory as the file under test. Why?
