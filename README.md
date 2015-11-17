@@ -14,9 +14,9 @@ This is a starter kit for building a new React project at VinSolutions. The goal
 The starter kit includes a working example app that puts all of the above to use.
 
 ## Get Started
-1. The build process relies on NodeJS and npm, so first, [install Node](https://nodejs.org).
-2. Clone the project from GitHub (or download the zip if you prefer). I suggest installing [Git](https://git-scm.com/downloads) and using Git Bash for your command line work, but if you're not confortable with the Unix command line, this starter kit will also work on the Window DOS command prompt. To open a Windows command prompt, type `Win+r` and type `cmd` in the Run dialog.
-3. On your command line, cd to the root of this project and type `npm install` - This will install all the necessary packages which are listed in package.json. 
+1. *Install Node:* The build process relies on NodeJS and npm, so first, [install Node](https://nodejs.org).
+2. *Clone the project from GitHub:*  I suggest installing [Git](https://git-scm.com/downloads) and using Git Bash for your command line work, but if you're not comfortable with the Unix command line, this starter kit will also work on the Window DOS command prompt. To open a Windows command prompt, type `Win+r` and type `cmd` in the Run dialog. To clone this project to your machine, install git, then open the command line of your choice and type `git clone https://github.com/coryhouse/vin-javascript-starter-kit.git`. Or, if you prefer to avoid using git, you can simply [download this repo as a zip](https://github.com/coryhouse/vin-javascript-starter-kit/archive/master.zip) and unzip it to whatever directory you like.
+3. On your command line, cd to the new folder that was created in step 2. Type `npm install` - This will install all the necessary packages which are listed in package.json. npm is basically Nuget for Node. So running `npm install` is comparable to restoring Nuget packages.
 4. Type `gulp` - This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically everytime you hit save.
 
 ## Testing
