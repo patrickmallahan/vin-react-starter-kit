@@ -17,7 +17,7 @@ The starter kit includes a working example app that puts all of the above to use
 1. **[Install Node](https://nodejs.org).** The build process relies on NodeJS and npm.
 2. **[Install Git](https://git-scm.com/downloads).**
 3. **Clone the project from GitHub.**  To clone this project to your machine, open the command line of your choice and type `git clone https://github.com/coryhouse/vin-javascript-starter-kit.git`. This command will create a copy of this repo in your current directory. I suggest using Git Bash for your command line work, but if you're not comfortable with the Unix command line, this starter kit will also work on the Window DOS command prompt.
-4. **Install Packages.** On your command line, cd to the new folder that was created in step 2. Type `npm install` - This will install all the necessary packages which are listed in package.json. npm is basically Nuget for Node. So running `npm install` is comparable to restoring Nuget packages.
+4. **Install Packages.** On your command line, cd to the new folder that was created in the previous step. Type `npm install`. This will install all the necessary packages which are listed in package.json. npm is basically Nuget for Node. So running `npm install` is comparable to restoring Nuget packages.
 5. **Run Gulp.** Type `gulp` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically everytime you hit save.
 
 ## Testing
