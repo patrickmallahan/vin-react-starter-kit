@@ -36,6 +36,6 @@ When you run the default Gulp task by typing `gulp`, no JS is minified. Why? Bec
 
 ###Quirks with debugging via Sourcemaps: 
 1. Browsers vary in the way they allow you to view the original source. Chrome automatically shows the original source if a sourcemap is available. Safari, in contrast, will display the minified source and you'll [have to cmd+click on a given line to be taken to the original source](http://stackoverflow.com/questions/19550060/how-do-i-toggle-source-mapping-in-safari-7).
-2. In Chrome (and perhaps other browsers), when you make a source code change, you must close the source view tab you were using and repoen it to see the updated source code. It appears Chrome clings to the old sourcemap until you close and reopen the source view tab. To clarify, you don't have to close the actual tab that is displaying the app, just the tab in the console that's displaying the source file that you just changed.
+2. In Chrome (and perhaps other browsers), when you make a source code change, **you must close the source view tab you were using and repoen it to see the updated source code**. It appears Chrome clings to the old sourcemap until you close and reopen the source view tab. To clarify, you don't have to close the actual tab that is displaying the app, just the tab in the console that's displaying the source file that you just changed.
 
 
