@@ -102,7 +102,8 @@ gulp.task('js', function() {
 // gulp.task('css', function() {
 // 	gulp.src(config.paths.css)
 // 		.pipe(concat('bundle.css'))
-// 		.pipe(gulp.dest(config.paths.dist + '/css'));
+// 		.pipe(gulp.dest(config.paths.dist + '/css'))
+//		.pipe(connect.reload());
 // });
 
 gulp.task('lint', function() {
@@ -118,7 +119,9 @@ gulp.task('test', function() {
 
 gulp.task('lint-test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
-		.pipe(mocha());
+		//Built-in reporters: min, spec, dot, nyan, landing strip, list, progress
+		//Examples: https://mochajs.org/#reporters
+		.pipe(mocha({ reporter: 'nyan'}));
 });
 
 /*This task simply calls a command stored in package.json.
