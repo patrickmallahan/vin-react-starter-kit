@@ -9,6 +9,7 @@ class NumberFormatter {
         value = this.getFormattedNumber(value);
         return '$' + value;
     }
+
     static getFormattedNumber(value) {
         if (value === 0) {
             return 0;
@@ -40,6 +41,7 @@ class NumberFormatter {
         }
         return roundedValue;
     }
+
     static isInt(n) {
         if (n === '' || n === null) {
             return false;
@@ -47,8 +49,9 @@ class NumberFormatter {
 
         return n % 1 === 0;
     }
+    
     static scrubFormatting(value) {
-        return value.toString().replace(',', '').replace('.', '');
+        return value.toString().replace('$', '').replace(',', '').replace('.', '');
     }
 }
 

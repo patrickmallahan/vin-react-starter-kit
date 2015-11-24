@@ -4,6 +4,32 @@ import Calculator from './fuelSavingsCalculator';
 chai.should();
 
 describe('Fuel Savings Calculator', () => {
+    describe('necessaryDataIsProvidedToCalculateSavings', () => {
+        it('returns false when necessary data isn\'t provided', () => {
+            //arrange
+            let settings = {
+                newMpg: 20
+            };
+
+            //assert
+            Calculator().necessaryDataIsProvidedToCalculateSavings(settings).should.equal(false);
+        });
+
+        it('returns true when necessary data is provided', () => {
+            //arrange
+            let settings = { 
+                newMpg: 20,
+                tradeMpg: 10,
+                newPpg: 1.50,
+                tradePpg: 1.50,
+                milesDriven: 100
+            };
+
+            //assert
+            Calculator().necessaryDataIsProvidedToCalculateSavings(settings).should.equal(true);
+        });
+    });
+
     describe("milesPerMonth", () => {
         it("converts a weekly timeframe to a monthly timeframe", () => {
             //arrange

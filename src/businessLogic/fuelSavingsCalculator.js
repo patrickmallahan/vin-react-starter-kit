@@ -28,28 +28,34 @@ let fuelSavingsCalculator = function() {
             }
         },
 
-        calculateSavingsPerMonth: function(config) {
-            if (!config.milesDriven) {  
+        calculateSavingsPerMonth: function(settings) {
+            if (!settings.milesDriven) {  
                 return 0;
             }
 
-            let milesDrivenPerMonth = this.calculateMilesDrivenPerMonth(config.milesDriven, config.milesDrivenTimeframe);
-            let tradeFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, config.tradePpg, config.tradeMpg);
-            let newFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, config.newPpg, config.newMpg);
+            let milesDrivenPerMonth = this.calculateMilesDrivenPerMonth(settings.milesDriven, settings.milesDrivenTimeframe);
+            let tradeFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, settings.tradePpg, settings.tradeMpg);
+            let newFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, settings.newPpg, settings.newMpg);
             let savingsPerMonth = tradeFuelCostPerMonth - newFuelCostPerMonth;
 
             return mathHelper.roundNumber(savingsPerMonth, 2);
         },
 
-        //Returns savings object
-        calculateSavings: function(config) {
-            let monthlySavings = this.calculateSavingsPerMonth(config);
-            let annualSavings = monthlySavings * 12;
-            let threeYearSavings = annualSavings * 3;
+
+        necessaryDataIsProvidedToCalculateSavings: function(settings) {
+            return settings.newMpg > 0
+                && settings.tradeMpg > 0
+                && settings.newPpg > 0
+                && settings.tradePpg > 0
+                && settings.milesDriven > 0;
+        },
+
+        calculateSavings: function(settings) {
+            let monthlySavings = this.calculateSavingsPerMonth(settings);
             return {
                 monthly: NumberFormatter.getCurrencyFormattedNumber(monthlySavings),
-                annual: NumberFormatter.getCurrencyFormattedNumber(annualSavings),
-                threeYear: NumberFormatter.getCurrencyFormattedNumber(threeYearSavings)
+                annual: NumberFormatter.getCurrencyFormattedNumber(monthlySavings * 12),
+                threeYear: NumberFormatter.getCurrencyFormattedNumber(monthlySavings * 12 * 3)
             };
         }
     };

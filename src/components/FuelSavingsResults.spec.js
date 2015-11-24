@@ -19,6 +19,7 @@ chai.should();
 describe('Fuel Savings Calculator Results Component', () => {
 	describe('Savings label', () => {
 		it('displays as savings when savings exist', () => {
+			//arrange
 			var props = {
 				savings: {
 					monthly: '10',
@@ -28,13 +29,18 @@ describe('Fuel Savings Calculator Results Component', () => {
 			};
 
 			var sut = React.createElement(FuelSavingsResults, props);
+
+			//act
 			var html = ReactDOMServer.renderToStaticMarkup(sut);
 			let $ = cheerio.load(html);
 			var fuelSavingsLabel = $('.fuel-savings-label').html();
+
+			//assert
 			fuelSavingsLabel.should.equal('Savings');
 		});
 
 		it('display as loss when savings don\'t exist', () => {
+			//arrange
 			var props = {
 				savings: {
 					monthly: '-10',
@@ -44,9 +50,13 @@ describe('Fuel Savings Calculator Results Component', () => {
 			};
 
 			var sut = React.createElement(FuelSavingsResults, props);
+
+			//act
 			var html = ReactDOMServer.renderToStaticMarkup(sut);
 			let $ = cheerio.load(html);
 			var fuelSavingsLabel = $('.fuel-savings-label').html();
+
+			//assert
 			fuelSavingsLabel.should.equal('Loss');			
 		});
 	});

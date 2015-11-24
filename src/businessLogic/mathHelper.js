@@ -11,6 +11,7 @@ class MathHelper {
         var scrubbedNumber = numberToRound.toString().replace('$', '').replace(',', '');
         return Math.round(scrubbedNumber * Math.pow(10, numberOfDecimalPlaces)) / Math.pow(10, numberOfDecimalPlaces);
     }
+    
     static addArray(values) { //adds array of values passed.
         if (values == null) {
             return null;
@@ -23,6 +24,7 @@ class MathHelper {
         
         return total / 100; //convert back into dollars 
     }
+
     static convertToPennies(dollarValue) {
         if (dollarValue === 0) {
             return 0;
