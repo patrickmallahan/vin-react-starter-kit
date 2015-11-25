@@ -8,7 +8,7 @@ This is a starter kit for building a new React project at VinSolutions. The goal
 * [Mocha](http://mochajs.org) for automated tests with [Chai](http://chaijs.com/) for assertions
 * [Istanbul](https://github.com/gotwarlost/istanbul) for code coverage data
 * [TrackJS](http://trackjs.com) for JS error tracking in production  
-* [ESLint](http://eslint.org/) for linting JS  
+* [ESLint](http://eslint.org/) for linting JS. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules.
 * [SASS](http://sass-lang.com/) for styling  
 * [Gulp](http://gulpjs.com) glues all this together in a handy automated build
 
