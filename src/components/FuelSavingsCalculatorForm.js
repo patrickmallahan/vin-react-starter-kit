@@ -5,9 +5,12 @@ import FuelSavingsTextInput from './FuelSavingsTextInput';
 class FuelSavingsCalculatorForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            milesDrivenTimeframe: this.props.milesDrivenTimeframe
-        };
+
+        //why: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+        this.fuelSavingsKeypress = this.fuelSavingsKeypress.bind(this); 
+        this.props.actions.saveFuelSavings = this.props.actions.saveFuelSavings.bind(this);
+        this.onTimeframeChange = this.onTimeframeChange.bind(this);
+        this.save = this.save.bind(this);
     }
 
     fuelSavingsKeypress(name, value) {
@@ -15,8 +18,11 @@ class FuelSavingsCalculatorForm extends React.Component {
     }
 
     onTimeframeChange(e) {
-        this.setState({ milesDrivenTimeframe: e.target.value });
         this.props.actions.calculateFuelSavings(this.props, 'milesDrivenTimeframe', e.target.value);
+    }
+
+    save() {
+        this.props.actions.saveFuelSavings(this.props.settings);
     }
 
     render() {
@@ -28,49 +34,50 @@ class FuelSavingsCalculatorForm extends React.Component {
                 <table> 
                     <tbody>
                         <tr>
-                            <td><label>New Vehicle MPG</label></td>
-                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress.bind(this)} name="newMpg" value={settings.newMpg} /></td>
+                            <td><label htmlFor="newMpg">New Vehicle MPG</label></td>
+                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="newMpg" value={settings.newMpg} /></td>
                         </tr>
                         <tr>
-                            <td><label>Trade-in MPG</label></td>
-                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress.bind(this)} name="tradeMpg" value={settings.tradeMpg} /></td>
+                            <td><label htmlFor="tradeMpg">Trade-in MPG</label></td>
+                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="tradeMpg" value={settings.tradeMpg} /></td>
                         </tr>
                         <tr>
-                            <td><label>New Vehicle price per gallon</label></td>
-                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress.bind(this)} name="newPpg" value={settings.newPpg} /></td>
+                            <td><label htmlFor="newPpg">New Vehicle price per gallon</label></td>
+                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="newPpg" value={settings.newPpg} /></td>
                         </tr>
                         <tr>
-                            <td><label>Trade-in price per gallon</label></td>
-                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress.bind(this)} name="tradePpg" value={settings.tradePpg} /></td>
+                            <td><label htmlFor="tradePpg">Trade-in price per gallon</label></td>
+                            <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="tradePpg" value={settings.tradePpg} /></td>
                         </tr>
                         <tr>
-                            <td><label>Miles Driven</label></td>
+                            <td><label htmlFor="milesDriven">Miles Driven</label></td>
                             <td>
-                                <FuelSavingsTextInput onChange={this.fuelSavingsKeypress.bind(this)} name="milesDriven" value={settings.milesDriven} /> miles per
-                                <select name="milesDrivenTimeframe" name="milesDrivenTimeframe" onChange={this.onTimeframeChange.bind(this)} value={this.state.milesDrivenTimeframe}>
+                                <FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="milesDriven" value={settings.milesDriven} /> miles per
+                                <select name="milesDrivenTimeframe" onChange={this.onTimeframeChange} value={settings.milesDrivenTimeframe}>
                                     <option value="week">Week</option>
                                     <option value="month">Month</option>
                                     <option value="year">Year</option>
                                 </select>
                             </td>
                         </tr>
-                        <tr>
+                         <tr>
                             <td><label>Date Modified</label></td>
-                            <td>{ settings.dateModified }</td>
+                            <td>{settings.dateModified}</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <hr/>
 
-                { settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null }
-                <input type="submit" value="Save" onClick={this.props.actions.saveFuelSavings.bind(settings)} />
+                {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
+                <input type="submit" value="Save" onClick={this.save} />
             </div>
         );
     }
 }
 
 FuelSavingsCalculatorForm.propTypes = {
+    actions: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired
 };
 
