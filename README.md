@@ -1,16 +1,16 @@
 # VinSolutions JavaScript Starter Kit
 This is a starter kit for building a new React project at VinSolutions. The goal: Make it easy to start a robust new client-side app using modern tooling:
 
-* [React](https://facebook.github.io/react/) for rich, fast, client-side components  
-* [Redux](http://redux.js.org) for data flows (An alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html) - This is useful on larger apps with complex data flows)  
-* [Babel](http://babeljs.io) for compiling ES6 to ES5, so we can enjoy the new version of JavaScript today  
+* [React](https://facebook.github.io/react/) for rich, fast, client-side components  [Pluralsight Courses](https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents)  
+* [Redux](http://redux.js.org) for data flows (An alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html) - This is useful on larger apps with complex data flows). [Tutorial](https://egghead.io/series/getting-started-with-redux)  
+* [Babel](http://babeljs.io) for compiling ES6 to ES5, so we can enjoy the new version of JavaScript today. [ES6 REPL](https://babeljs.io/repl/) [ES6 vs ES5](http://es6-features.org) [ES6 Katas](http://es6katas.org) [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)  
 * [Browserify](http://browserify.org/) for bundling all JS including npm packages for use in the browser  
 * [Mocha](http://mochajs.org) for automated tests with [Chai](http://chaijs.com/) for assertions
 * [Istanbul](https://github.com/gotwarlost/istanbul) for code coverage data
 * [TrackJS](http://trackjs.com) for JS error tracking in production  
 * [ESLint](http://eslint.org/) for linting JS  
 * [SASS](http://sass-lang.com/) for styling  
-* [Gulp](http://gulpjs.com) glues all this together in a handy automated build
+* [Gulp](http://gulpjs.com) glues all this together in a handy automated build [Pluralsight course](https://app.pluralsight.com/library/courses/javascript-build-automation-gulpjs)  
 
 The starter kit includes a working example app that puts all of the above to use.
 
