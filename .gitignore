@@ -29,5 +29,8 @@ node_modules
 #dist folder
 dist
 
+#Webstorm metadata
+.idea
+
 # Mac files
 .DS_Store
