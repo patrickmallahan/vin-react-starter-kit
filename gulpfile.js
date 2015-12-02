@@ -14,6 +14,7 @@ var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
+var notify = require('gulp-notify'); //Notify OS
 
 var config = {
 	port: 9005,
@@ -109,7 +110,8 @@ gulp.task('js', function() {
 gulp.task('lint', function() {
 	return gulp.src(config.paths.js)
 		.pipe(lint({config: '.eslintrc'}))
-		.pipe(lint.format());
+		.pipe(lint.format())
+		.pipe(notify('linting done'));
 });
 
 gulp.task('test', function() {
