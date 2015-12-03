@@ -1,7 +1,7 @@
 {
-  "name": "vin-javascript-starter-kit",
+  "name": "vin-react-starter-kit",
   "version": "1.0.0",
-  "description": "Starter kit for creating new client-side applications at Vinsolutions",
+  "description": "Starter kit for creating client-side apps using React at Vinsolutions",
   "main": "main.js",
   "scripts": {
     "start": "gulp",
@@ -11,7 +11,7 @@
     "open-coverage": "open coverage/lcov-report/index.html"
   },
   "author": "Cory House",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "browserify": "^11.0.1",
     "flux": "^2.0.3",
