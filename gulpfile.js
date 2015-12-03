@@ -14,7 +14,6 @@ var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
-var notify = require('gulp-notify'); //Notify OS
 
 var config = {
 	port: 9005,
@@ -35,7 +34,7 @@ var config = {
 		dist: './dist',
 		mainJs: './src/main.js'
 	}
-}
+};
 
 //Start a local development server
 //Run related build tasks first to assure that the files
@@ -50,7 +49,7 @@ gulp.task('connect', ['html', 'js', 'sass', 'lint-test'], function() {
 });
 
 gulp.task('sass', function () {
-  gulp.src(config.paths.sass)
+  return gulp.src(config.paths.sass)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.paths.dist + '/css/'))
 	.pipe(connect.reload());
@@ -62,7 +61,7 @@ gulp.task('open', ['connect'], function() {
 });
 
 gulp.task('html', function() {
-	gulp.src(config.paths.html)
+	return gulp.src(config.paths.html)
 		.pipe(gulp.dest(config.paths.dist))
 		.pipe(connect.reload());
 });
@@ -110,8 +109,7 @@ gulp.task('js', function() {
 gulp.task('lint', function() {
 	return gulp.src(config.paths.js)
 		.pipe(lint({config: '.eslintrc'}))
-		.pipe(lint.format())
-		.pipe(notify('linting done'));
+		.pipe(lint.format());
 });
 
 gulp.task('test', function() {
@@ -121,9 +119,9 @@ gulp.task('test', function() {
 
 gulp.task('lint-test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
-		//Built-in reporters: min, spec, dot, nyan, landing strip, list, progress
+		//Built-in reporters: min, spec, dot, nyan, list, progress
 		//Examples: https://mochajs.org/#reporters
-		.pipe(mocha({ reporter: 'nyan'}));
+		.pipe(mocha({ reporter: 'dot'}));
 });
 
 /*This task simply calls a command stored in package.json.
@@ -135,10 +133,15 @@ gulp.task('lint-test', ['lint'], function() {
   Advantages: 
 	+ Output is colored, even when run from Gulp
 	+ More friendly error messages than ES6 version below when code can't be compiled
+	+ Doesn't display a spurious error message like Isparta does on the es6 task.
+
+  Disadvantages:
+  	- Code coverage is on the *compiled* code, instead of the code you wrote, so numbers aren't quite accurate.
+  	- Hard to read the resulting reports since it's compiled code.
 
 	Alternative approach at https://gist.github.com/cgmartin/599fefffd6baa161c615
 */
-gulp.task('coverage-es5', shell.task(['npm run coverage']));
+gulp.task('coverage-es5', shell.task(['npm run coverage-es5']));
 
 /*This task simply calls a command stored in package.json.
   This version runs coverage on the code *before* it's compiled to ES5 by Babel
@@ -153,17 +156,20 @@ gulp.task('coverage-es5', shell.task(['npm run coverage']));
   Istanbul may add a preloader for ES6 in the future. https://github.com/douglasduteil/isparta/issues/31
   Advantages:
 	+ Reports in coverage show the actual code you wrote (instead of your code compiled down to ES5).
+
+  Disadvantage:
+    - Isparta is currently throwing an error, which you can ignore. It doesn't impact the app or report.
+   Should be able to drop Isparta once Istanbul adds native ES6 support in 1.0: https://github.com/gotwarlost/istanbul/issues/212
+   Working example using 1.0 alpha: https://github.com/istanbuljs/sample-babel-node
 */
 gulp.task('coverage-es6', shell.task(['npm run coverage-es6']));
 
-gulp.task('open-coverage', function() {
+gulp.task('open-coverage', ['coverage-es6'], function() {
 	gulp.src('coverage/lcov-report/index.html')
 		.pipe(open());
 });
 
-gulp.task('coverage', ['coverage-es6', 'open-coverage']);
-
-gulp.task('lint-test-cover', ['lint-test', 'coverage']);
+gulp.task('lint-test-cover', ['lint-test', 'coverage-es6']);
 
 gulp.task('watch', function() {
 	gulp.watch(config.paths.html, ['html']);
@@ -182,4 +188,6 @@ gulp.task('setup-prod-environment', function () {
 
 gulp.task('default', ['open', 'watch']);
 
-gulp.task('build', ['setup-prod-environment', 'open', 'watch', 'coverage']);
+//Prepares app for prod deployment by doing additional things like minifying JS.
+//This task should be run before committing code.
+gulp.task('build', ['setup-prod-environment', 'open', 'watch', 'open-coverage']);
