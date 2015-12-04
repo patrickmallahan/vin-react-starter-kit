@@ -1,7 +1,6 @@
 "use strict";
 
 var gulp = require('gulp');
-var connect = require('gulp-connect'); // Runs a local dev server
 var open = require('gulp-open'); // Open a URL in a web browser
 var sass = require('gulp-sass'); // Compiles SASS to CSS
 var browserify = require('browserify'); // Wraps npm modules so they can be run in the browser
@@ -14,13 +13,14 @@ var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
+var browserSync = require('browser-sync'); //Webserver that exposes app on public IP for mobile testing
 
 var config = {
 	port: 9005,
 	devBaseUrl: 'http://localhost',
 	paths: {
 		html: './src/*.html',
-		js: [ 
+		js: [
 			'./src/**/*.js',
 			'!./src/**/*.spec.js'
 		],
@@ -36,36 +36,34 @@ var config = {
 	}
 };
 
-//Start a local development server
-//Run related build tasks first to assure that the files
-//we want to serve are available.
-gulp.task('connect', ['html', 'js', 'sass', 'lint-test'], function() {
-	connect.server({
-		root: ['dist'],
-		port: config.port,
-		base: config.devBaseUrl,
-		livereload: true
+//Open the app in the user's default browser using browserSync webserver
+//Watches files and reloads as they change.
+gulp.task('open', ['html', 'js', 'sass', 'lint-test'], function() {
+	browserSync.init({
+    files: ["./dist/*.html", "./dist/**/*.js", "./dist/css/*"],
+    injectChanges: true,
+    codeSync: true,
+		server: {
+			baseDir: "./dist"
+		}
 	});
 });
 
+//Compile Sass
 gulp.task('sass', function () {
   return gulp.src(config.paths.sass)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(config.paths.dist + '/css/'))
-	.pipe(connect.reload());
+    .pipe(gulp.dest(config.paths.dist + '/styles/'))
+	  .pipe(browserSync.stream());
 });
 
-gulp.task('open', ['connect'], function() {
-	gulp.src('dist/index.html')
-		.pipe(open({ uri: config.devBaseUrl + ':' + config.port + '/'}));
-});
-
+//Migrate HTML files to dist folder
 gulp.task('html', function() {
 	return gulp.src(config.paths.html)
-		.pipe(gulp.dest(config.paths.dist))
-		.pipe(connect.reload());
+		.pipe(gulp.dest(config.paths.dist));
 });
 
+//Build JS via Babel, bundle via Browserify, minify via minifyify
 gulp.task('js', function() {
 	//or, can run this on command line to compile babel, minify, and create separate bundle
 	//browserify ./src/main.js -d -t [ babelify ] -p [minifyify --map bundle.map.json --output ./dist/scripts/bundle.map.json] > ./dist/scripts/bundle.js
@@ -75,12 +73,12 @@ gulp.task('js', function() {
 	bundler.transform('babelify');
 
 	//Note that while a sourcemap is always generated,
-	//this only minifies when the NODE_ENV is prod.
+	//this only minifies when NODE_ENV is set to prod.
 	//We're not minifying for the default (dev) task to speed builds.
 	//The sourcemap is always generated because it's still
-	//useful even without minification so that the original ES6 
+	//useful even without minification so that the original ES6
 	//is displayed when debugging in the browser.
-	bundler.plugin('minifyify', 
+	bundler.plugin('minifyify',
 		{
 			map: 'bundle.map.json',
 			output: './dist/scripts/bundle.map.json',
@@ -89,34 +87,35 @@ gulp.task('js', function() {
 	);
 
 	bundler.bundle(function (err, src, map) {
-	  // Can optionally add code here 
+	  // Can optionally add code here
 	})
 	.on('error', console.error.bind(console))
 	.pipe(source('bundle.js'))
-	.pipe(gulp.dest(config.paths.dist + '/scripts'))
-	.pipe(connect.reload());
+	.pipe(gulp.dest(config.paths.dist + '/scripts'));
 });
 
-//This task is useful for bundling css from libraries (like KendoUI, Bootstrap, etc)
+//This task is potentially useful for bundling css from libraries (like KendoUI, Bootstrap, etc)
 //We should use SASS to write our own stylesheets.
 // gulp.task('css', function() {
 // 	gulp.src(config.paths.css)
 // 		.pipe(concat('bundle.css'))
-// 		.pipe(gulp.dest(config.paths.dist + '/css'))
-//		.pipe(connect.reload());
+// 		.pipe(gulp.dest(config.paths.dist + '/css'));
 // });
 
+//Lint JS files via ESLint
 gulp.task('lint', function() {
 	return gulp.src(config.paths.js)
 		.pipe(lint({config: '.eslintrc'}))
 		.pipe(lint.format());
 });
 
+//Run tests via Mocha with Chai
 gulp.task('test', function() {
 	return gulp.src(config.paths.tests)
 		.pipe(mocha());
 });
 
+//Lint JS and run tests
 gulp.task('lint-test', ['lint'], function() {
 	return gulp.src(config.paths.tests)
 		//Built-in reporters: min, spec, dot, nyan, list, progress
@@ -127,10 +126,10 @@ gulp.task('lint-test', ['lint'], function() {
 /*This task simply calls a command stored in package.json.
   It uses Mocha with Istanbul to run tests and create code coverage reports.
   This version runs coverage on the code *after* it's compiled to ES5 by Babel
-  This means the resulting reports in /coverage show *compiled* code. 
+  This means the resulting reports in /coverage show *compiled* code.
   This makes the reports from this pretty useless, though the coverage
   numbers are generally valid.
-  Advantages: 
+  Advantages:
 	+ Output is colored, even when run from Gulp
 	+ More friendly error messages than ES6 version below when code can't be compiled
 	+ Doesn't display a spurious error message like Isparta does on the es6 task.
@@ -149,7 +148,7 @@ gulp.task('coverage-es5', shell.task(['npm run coverage-es5']));
   Since this shows code coverage numbers on the code you wrote, it should be used as the default
   because its stats are obviously most accurate. However, if you're having issues, the test task
   above often produces more useful error messages, but with slightly less accurate code coverage
-  information since the code coverage is calculated on the compiled ES5 code instead of the ES6 you wrote. 
+  information since the code coverage is calculated on the compiled ES5 code instead of the ES6 you wrote.
   Note: This command throws a "transformation error" because I have to reference the full path to _mocha
   in this command to make windows happy (see the coverage-es6 task in package.json). On Mac, I can
   run _mocha without a path just fine because it lands properly in .bin there.
@@ -164,6 +163,7 @@ gulp.task('coverage-es5', shell.task(['npm run coverage-es5']));
 */
 gulp.task('coverage-es6', shell.task(['npm run coverage-es6']));
 
+//Open code coverage information in the browser
 gulp.task('open-coverage', ['coverage-es6'], function() {
 	gulp.src('coverage/lcov-report/index.html')
 		.pipe(open());
@@ -171,13 +171,15 @@ gulp.task('open-coverage', ['coverage-es6'], function() {
 
 gulp.task('lint-test-cover', ['lint-test', 'coverage-es6']);
 
+//Watch files and re-run tasks
 gulp.task('watch', function() {
-	gulp.watch(config.paths.html, ['html']);
-	gulp.watch(config.paths.js, ['js', 'lint-test']);
-	gulp.watch(config.paths.tests, ['lint-test']);
-	gulp.watch(config.paths.sass, ['sass']);
+  gulp.watch(config.paths.html, ['html']);
+  gulp.watch(config.paths.js, ['js', 'lint-test']);
+  gulp.watch(config.paths.tests, ['lint-test']);
+  gulp.watch(config.paths.sass, ['sass']);
 });
 
+//Sets environment variable so production specific steps (like minifying JS) are completed.
 gulp.task('setup-prod-environment', function () {
     process.stdout.write("Setting NODE_ENV to 'production'" + "\n");
     process.env.NODE_ENV = 'production';
@@ -186,6 +188,7 @@ gulp.task('setup-prod-environment', function () {
     }
 });
 
+//Default Gulp Task. This runs when you simply type `gulp`.
 gulp.task('default', ['open', 'watch']);
 
 //Prepares app for prod deployment by doing additional things like minifying JS.
