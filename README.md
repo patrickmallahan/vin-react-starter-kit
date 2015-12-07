@@ -45,15 +45,16 @@ When you run the default Gulp task by typing `gulp`, no JS is minified. Why? Bec
 3. If the latest source isn't displaying the console, force a refresh. Sometimes Chrome seems to hold onto a previous version of the sourcemap which will cause you to see stale code.
 
 ##Potential Features Coming Soon...
-* Streamlined gulpfile via gulp-sequence (or via Node Scripts)
-* Babel 6 upgrade
+* [Hot Reloading](https://github.com/Browsersync/recipes/tree/master/recipes/webpack.react-transform-hmr)  
+* Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
+* Use Yeoman / npm for easy updates and config
+* Babel 6 upgrade
+* Time travel debugging
 * Cache busting bundle naming
-* Hot Reloading
 * Growl support
 * GraphQL and Relay
-* Organize with ops to run prod build step and utilized the resulting code in QA and Prod
-* Use Yeoman / npm for easy updates and config
+* Organize with devops to run prod build step
 * Bootstrap
 * Kendo
 * Superagent or jQuery for API calls

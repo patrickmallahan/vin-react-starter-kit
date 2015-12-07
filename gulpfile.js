@@ -13,7 +13,10 @@ var mocha = require('gulp-mocha'); // Test JS
 var babel = require('babel/register'); // Register Babel for Mocha
 var debug = require('gulp-debug'); // Useful for debugging Gulp
 var shell = require('gulp-shell'); // Run shell commands from within gulp
-var browserSync = require('browser-sync'); //Webserver that exposes app on public IP for mobile testing
+var browserSync = require('browser-sync'); // Webserver that exposes app on public IP for mobile testing
+var gulpSequence = require('gulp-sequence'); // Run selected gulp tasks in sequence instead of in parallel
+var del = require('del'); // Node library for deleting files and folders
+var fs = require('fs'); // File system library. Built into Node.
 
 var config = {
 	port: 9005,
@@ -36,6 +39,17 @@ var config = {
 	}
 };
 
+//Remove the dist folder and add initial structure to assure a clean build.
+gulp.task('clean', function(callback) {
+  del('./dist').then(function() {
+    fs.mkdir('dist', function() {
+      fs.mkdir('./dist/scripts');
+      fs.mkdir('./dist/styles');
+    });
+  });
+  callback();
+});
+
 //Open the app in the user's default browser using browserSync webserver
 //Watches files and reloads as they change.
 gulp.task('open', ['html', 'js', 'sass', 'lint-test'], function() {
@@ -54,7 +68,7 @@ gulp.task('sass', function () {
   return gulp.src(config.paths.sass)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.paths.dist + '/styles/'))
-	  .pipe(browserSync.stream());
+    .pipe(browserSync.stream());
 });
 
 //Migrate HTML files to dist folder
@@ -172,25 +186,28 @@ gulp.task('open-coverage', ['coverage-es6'], function() {
 gulp.task('lint-test-cover', ['lint-test', 'coverage-es6']);
 
 //Watch files and re-run tasks
-gulp.task('watch', function() {
+gulp.task('watch', function(callback) {
   gulp.watch(config.paths.html, ['html']);
   gulp.watch(config.paths.js, ['js', 'lint-test']);
   gulp.watch(config.paths.tests, ['lint-test']);
   gulp.watch(config.paths.sass, ['sass']);
+  callback();
 });
 
 //Sets environment variable so production specific steps (like minifying JS) are completed.
-gulp.task('setup-prod-environment', function () {
-    process.stdout.write("Setting NODE_ENV to 'production'" + "\n");
-    process.env.NODE_ENV = 'production';
-    if (process.env.NODE_ENV != 'production') {
-        throw new Error("Failed to set NODE_ENV to production!");
-    }
+gulp.task('setup-prod-environment', function (callback) {
+  process.stdout.write("Setting NODE_ENV to 'production'" + "\n");
+  process.env.NODE_ENV = 'production';
+  if (process.env.NODE_ENV != 'production') {
+      throw new Error("Failed to set NODE_ENV to production!");
+  }
+
+  callback();
 });
 
-//Default Gulp Task. This runs when you simply type `gulp`.
-gulp.task('default', ['open', 'watch']);
+//Default Gulp Task. Runs when you simply type `gulp`. Useful for development.
+gulp.task('default', gulpSequence('clean', 'open', 'watch'));
 
 //Prepares app for prod deployment by doing additional things like minifying JS.
 //This task should be run before committing code.
-gulp.task('build', ['setup-prod-environment', 'open', 'watch', 'open-coverage']);
+gulp.task('build', gulpSequence(['clean', 'setup-prod-environment'], 'open', 'watch', 'open-coverage'));
