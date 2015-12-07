@@ -43,11 +43,13 @@ var config = {
 gulp.task('clean', function(callback) {
   del('./dist').then(function() {
     fs.mkdir('dist', function() {
-      fs.mkdir('./dist/scripts');
-      fs.mkdir('./dist/styles');
+      fs.mkdir('./dist/scripts', function() {
+        fs.mkdir('./dist/styles', function() {
+          callback();
+        });
+      });
     });
   });
-  callback();
 });
 
 //Open the app in the user's default browser using browserSync webserver
