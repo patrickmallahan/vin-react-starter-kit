@@ -72,6 +72,7 @@ Before committing, run `gulp build`. This will setup the project for production.
 * [Hot Reloading](https://github.com/Browsersync/recipes/tree/master/recipes/webpack.react-transform-hmr)  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
+* Pagespeed and other features from Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/) and [React Starter Kit](http://www.reactstarterkit.com)
 * Use Yeoman / npm for easy updates and config
 * [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email)
 * Time travel debugging
