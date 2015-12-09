@@ -69,6 +69,7 @@ Before committing, run `gulp build`. This will setup the project for production.
 * Be sure to link any other apps to the /dist folder
 
 ##Potential Features Coming Soon...
+* Folder structure documentation
 * [Hot Reloading](https://github.com/Browsersync/recipes/tree/master/recipes/webpack.react-transform-hmr)  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
