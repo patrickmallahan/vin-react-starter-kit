@@ -23,6 +23,25 @@ The starter kit includes a working example app that puts all of the above to use
 4. **Run Gulp**. Type `gulp` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save.
 5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
+ 
+##Folder Structure
+**/actions** - Redux actions. List of distinct actions that can occur in the app.  
+**/businessLogic** - Plain old JavaScript objects. Strive to place as much of your code here as you can (easier to test, framework agnostic). These are like POCOs, but JS.  
+**/components** - React components  
+**/constants** - Application constants  
+**/containers** - Redux app container  
+**/reducers** - Redux reducers  
+**/store** - Redux store configuration  
+**/styles** - Stylesheets  
+.babelrc - Babel configuration  
+.editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
+.eslintrc - ESLint configuration  
+gulpfile.js - Gulp configuration. This file contains build configuration  
+package.json - npm configuration. Lists npm packages  
+README.md - This file.  
+startDevEnvironment.js - Starts the development webserver using BrowserSync and Webpack  
+webpack.config.dev.js - Webpack dev config  
+webpack.config.prod.js - Webpack prod config  
 
 ##FAQ
 ### I just want an empty starter kit.
