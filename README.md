@@ -1,7 +1,7 @@
 # Vin React Starter Kit
 React is a lightweight library, so to build real apps, you need more. This starter kit provides a comprehensive framework for building fast, testable applications with React. It offers a rich development experience including:
 
-* [React](https://facebook.github.io/react/) for rich, fast, client-side components  [Pluralsight Course](https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents)  
+* [React](https://facebook.github.io/react/) for rich, fast, client-side components **Resources:** [Pluralsight Course](https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents)  
 * [Redux](http://redux.js.org) for data flows (An alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html) - Useful on larger apps with complex data flows). **Resources:** [Tutorial](https://egghead.io/series/getting-started-with-redux)  
 * [Babel](http://babeljs.io) for compiling ES6 to ES5. Enjoy the new version of JavaScript today. **Resources:** [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)  
 * [Browserify](http://browserify.org/) for bundling all JS including npm packages for use in the browser  
