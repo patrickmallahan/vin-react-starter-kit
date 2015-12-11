@@ -3,16 +3,16 @@ React is a lightweight library, so to build real apps, you need more. This start
 
 | **Tech** | **Description** |**Learn More**|
 |----------|-------|---|
-|  [React](https://facebook.github.io/react/)        |   Rich, fast, client-side components    |[Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
+|  [React](https://facebook.github.io/react/)        |   Fast, composable client-side components    |[Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
 |  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial](https://egghead.io/series/getting-started-with-redux)    |
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
-| [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser. | |
+| [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
 |[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | |
 | [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
-| [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | |
+| [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
 | [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
 | [Gulp](http://gulpjs.com)| Glues all this together in a handy automated build. | [Pluralsight course](https://app.pluralsight.com/library/courses/javascript-build-automation-gulpjs)  |
 
