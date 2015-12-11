@@ -107,11 +107,3 @@ Before committing, run `gulp build`. This will setup the project for production.
 * Authentication example  
 * Immutable.js  
 * Isomorphic Rendering  
-
-##Alternative names being considered
-* React Foundation
-* Ultimate React Starter
-* React Redux Starter
-* React Framework
-* React Boiler
-* React Slingshot
