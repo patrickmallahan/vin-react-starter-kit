@@ -16,20 +16,23 @@ let fuelSavingsCalculator = function() {
     //public
     return {
         calculateMilesDrivenPerMonth: function(milesDriven, milesDrivenTimeframe) {
-            switch (milesDrivenTimeframe) {
+          const monthsPerYear = 12;
+          const weeksPerYear = 52;
+
+          switch (milesDrivenTimeframe) {
                 case 'week':
-                    return (milesDriven * 52) / 12;
+                    return (milesDriven * weeksPerYear) / monthsPerYear;
                 case 'month':
                     return milesDriven;
                 case 'year':
-                    return milesDriven / 12;
+                    return milesDriven / monthsPerYear;
                 default:
                     throw 'Unknown milesDrivenTimeframe passed: ' + milesDrivenTimeframe;
             }
         },
 
         calculateSavingsPerMonth: function(settings) {
-            if (!settings.milesDriven) {  
+            if (!settings.milesDriven) {
                 return 0;
             }
 
