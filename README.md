@@ -1,18 +1,20 @@
 # Vin React Starter Kit
 React is a lightweight library, so to build real apps, you need more. This starter kit provides a comprehensive framework for building fast, testable applications with React. It offers a rich development experience including:
 
-* [React](https://facebook.github.io/react/) for rich, fast, client-side components  [Pluralsight Course](https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents)  
-* [Redux](http://redux.js.org) for data flows (An alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html) - Useful on larger apps with complex data flows). **Resources:** [Tutorial](https://egghead.io/series/getting-started-with-redux)  
-* [Babel](http://babeljs.io) for compiling ES6 to ES5. Enjoy the new version of JavaScript today. **Resources:** [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)  
-* [Browserify](http://browserify.org/) for bundling all JS including npm packages for use in the browser  
-* [Mocha](http://mochajs.org) for automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser.
-* [Istanbul](https://github.com/gotwarlost/istanbul) for code coverage data
-* [TrackJS](http://trackjs.com) for JS error tracking in production  
-* [ESLint](http://eslint.org/) for linting JS. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules.
-* [SASS](http://sass-lang.com/) for styling  
-* [Editor Config](http://editorconfig.org) to support consistent editor settings. **Resources:** [IDE Plugins](http://editorconfig.org/#download)
-* [BrowserSync](http://www.browsersync.com) for serving the app via a lightweight HTTP server that supports synchronized testing and debugging on multiple devices. **Resources:** [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)
-* [Gulp](http://gulpjs.com) glues all this together in a handy automated build. **Resources:** [Pluralsight course](https://app.pluralsight.com/library/courses/javascript-build-automation-gulpjs)  
+| **Tech** | **Description** |**Learn More**|
+|----------|-------|---|
+|  [React](https://facebook.github.io/react/)        |   Fast, composable client-side components    |[Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
+|  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial](https://egghead.io/series/getting-started-with-redux)    |
+|  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
+| [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
+| [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
+| [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
+|[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | |
+| [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
+| [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
+| [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
+| [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
+| [Gulp](http://gulpjs.com)| Glues all this together in a handy automated build. | [Pluralsight course](https://app.pluralsight.com/library/courses/javascript-build-automation-gulpjs)  |
 
 The starter kit includes a working example app that puts all of the above to use.
 
@@ -23,6 +25,25 @@ The starter kit includes a working example app that puts all of the above to use
 4. **Run Gulp**. Type `gulp` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save.
 5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
+ 
+##Folder Structure
+**/actions** - Redux actions. List of distinct actions that can occur in the app.  
+**/businessLogic** - Plain old JavaScript objects. Strive to place as much of your code here as you can (easier to test, framework agnostic). These are like POCOs, but JS.  
+**/components** - React components  
+**/constants** - Application constants  
+**/containers** - Redux app container  
+**/reducers** - Redux reducers  
+**/store** - Redux store configuration  
+**/styles** - Stylesheets  
+.babelrc - Babel configuration  
+.editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
+.eslintrc - ESLint configuration  
+gulpfile.js - Gulp configuration. This file contains build configuration  
+package.json - npm configuration. Lists npm packages  
+README.md - This file.  
+startDevEnvironment.js - Starts the development webserver using BrowserSync and Webpack  
+webpack.config.dev.js - Webpack dev config  
+webpack.config.prod.js - Webpack prod config  
 
 ##FAQ
 ### I just want an empty starter kit.
@@ -86,11 +107,3 @@ Before committing, run `gulp build`. This will setup the project for production.
 * Authentication example  
 * Immutable.js  
 * Isomorphic Rendering  
-
-##Alternative names being considered
-* React Foundation
-* Ultimate React Starter
-* React Redux Starter
-* React Framework
-* React Boiler
-* React Slingshot
