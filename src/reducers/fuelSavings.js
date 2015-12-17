@@ -1,4 +1,4 @@
-import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS, FUEL_SAVINGS_KEYPRESS} from '../constants/ActionTypes';
+import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS} from '../constants/ActionTypes';
 import calculator from '../businessLogic/fuelSavingsCalculator';
 import dateHelper from '../businessLogic/dateHelper';
 
@@ -29,7 +29,7 @@ export default function fuelSavings(state = initialState, action) {
 		case SAVE_FUEL_SAVINGS:
 			//in a real app we'd trigger an AJAX call here. For this example, just simulating a save by changing date modified.
 			return Object.assign({}, state, { dateModified: dateHelper.getFormattedDateTime(new Date()) });
-		
+
 		case CALCULATE_FUEL_SAVINGS:
 			let newState = Object.assign({}, state);
 			newState[action.fieldName] = action.value;
@@ -40,9 +40,9 @@ export default function fuelSavings(state = initialState, action) {
 			if (newState.necessaryDataIsProvidedToCalculateSavings) {
 				newState.savings = calc.calculateSavings(newState);
 			}
-			
+
 			return newState;
-		
+
 		default:
 			return state;
 	}
