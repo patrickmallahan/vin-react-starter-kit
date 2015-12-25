@@ -3,18 +3,17 @@ React is a lightweight library, so to build real apps, you need more. This start
 
 | **Tech** | **Description** |**Learn More**|
 |----------|-------|---|
-|  [React](https://facebook.github.io/react/)        |   Fast, composable client-side components    |[Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
+|  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components    |[Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) [Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
 |  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial](https://egghead.io/series/getting-started-with-redux)    |
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
 | [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
-|[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | |
-| [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
+|[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | | | [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
 | [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
 | [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
-| [Gulp](http://gulpjs.com)| Glues all this together in a handy automated build. | [Pluralsight course](https://app.pluralsight.com/library/courses/javascript-build-automation-gulpjs)  |
+| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction)  |
 
 The starter kit includes a working example app that puts all of the above to use.
 
@@ -22,11 +21,13 @@ The starter kit includes a working example app that puts all of the above to use
 1. **Install [ Node](https://nodejs.org) and [Git](https://git-scm.com/downloads).**
 2. **Clone the project.**  `git clone https://github.com/coryhouse/vin-javascript-starter-kit.git`.
 3. **Install packages.** `npm install`. 
-4. **Run Gulp**. Type `gulp` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save.
+4. **Run the example app**. Type `npm start -s` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
 5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
  
 ##Folder Structure
+**Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
+
 **/actions** - Redux actions. List of distinct actions that can occur in the app.  
 **/businessLogic** - Plain old JavaScript objects. Strive to place as much of your code here as you can (easier to test, framework agnostic). These are like POCOs, but JS.  
 **/components** - React components  
@@ -38,12 +39,10 @@ The starter kit includes a working example app that puts all of the above to use
 .babelrc - Babel configuration  
 .editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
 .eslintrc - ESLint configuration  
-gulpfile.js - Gulp configuration. This file contains build configuration  
 package.json - npm configuration. Lists npm packages  
 README.md - This file.  
-startDevEnvironment.js - Starts the development webserver using BrowserSync and Webpack  
-webpack.config.dev.js - Webpack dev config  
-webpack.config.prod.js - Webpack prod config  
+server.js - Development webserver configuration using BrowserSync and Webpack  
+webpack.config.js - Webpack config   
 
 ##FAQ
 ### I just want an empty starter kit.
@@ -72,11 +71,13 @@ Streamlined automated testing is a core feature of this starter kit. All tests a
 + As files are moved, it's easy to move tests alongside.
 
 ### How do I view code coverage?
-Code coverage is calculated and reported via Istanbul. To view your current code coverage, run `gulp open-coverage`. This will open a tab in your default browser which displays code coverage statistics. You can optionally update gulp to run your code coverage on the command line each time you hit save.
+Code coverage is calculated and reported via Istanbul. To view your current code coverage, run `npm run open-coverage`. This will open a tab in your default browser which displays code coverage statistics. You can optionally update the npm script config to run your code coverage on the command line each time you hit save.
 
 ### How do I debug?
 Since browsers don't currently support ES6, we're using Babel to compile our ES6 down to ES5. This means the code that runs in the browser looks different than what we wrote. But good news, a [sourcemap](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) is generated to enable easy debugging. This means your original JS source will be displayed in your browser's dev console. 
-*Note:* When you run the default Gulp task by typing `gulp`, no JS is minified. Why? Because minifying slows the build. So JS is only minified when you run the `gulp build` task. See [more on building for production below](https://github.com/coryhouse/vin-javascript-starter-kit#how-do-i-deploy-this).
+*Note:* When you run `npm start`, no JS is minified. Why? Because minifying slows the build. So JS is only minified when you run the `npm run build` script. See [more on building for production below](https://github.com/coryhouse/vin-javascript-starter-kit#how-do-i-deploy-this).
+
+Also note that no actual physical files are written to the filesystem during the dev build. **For performance, all files exist in memory when served from the webpack server.**. Physical files are only written when you run `npm run build`.
 
 **Tips for debugging via sourcemaps:**  
 1. Browsers vary in the way they allow you to view the original source. Chrome automatically shows the original source if a sourcemap is available. Safari, in contrast, will display the minified source and you'll [have to cmd+click on a given line to be taken to the original source](http://stackoverflow.com/questions/19550060/how-do-i-toggle-source-mapping-in-safari-7).  
@@ -84,19 +85,27 @@ Since browsers don't currently support ES6, we're using Babel to compile our ES6
 3. If the latest source isn't displaying the console, force a refresh. Sometimes Chrome seems to hold onto a previous version of the sourcemap which will cause you to see stale code.
 
 ### How do I deploy this?
-Before committing, run `gulp build`. This will setup the project for production. It does the following:
+Before committing, run `npm run build`. This will setup the project for production. It does the following:
 * Minifies all JS
 * Sets NODE_ENV to prod so that React is built in production mode
-* Be sure to link any other apps to the /dist folder
+* Places the resulting built project files into /dist. Point all links to the /dist folder.
 
 ##Potential Features Coming Soon...
-* Folder structure documentation
-* [Hot Reloading](https://github.com/Browsersync/recipes/tree/master/recipes/webpack.react-transform-hmr)  
+* Normalize project name in Title, URL on Vin React Framework
+* Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`
+* Integrate Karma for in-browser tests
+* Run npm command to delete the example app  
+* Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
+* Inject TrackJS into index.html <head> upon build (avoids adding noise in dev)  
+* Generate IDs automatically to assist QA automation  
+* Implement ideas from [Webpack React Starter](https://github.com/webpack/react-starter)  
+* Add favicon.ico to supress 404  
+* Package.json documentation including scripts  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
 * Pagespeed and other features from Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/) and [React Starter Kit](http://www.reactstarterkit.com)
 * Use Yeoman / npm for easy updates and config
-* [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email)
+* [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email) when [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 2.0 comes out of beta
 * Time travel debugging
 * Cache busting bundle naming
 * Growl support

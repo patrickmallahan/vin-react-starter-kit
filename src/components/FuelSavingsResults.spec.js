@@ -57,7 +57,7 @@ describe('Fuel Savings Calculator Results Component', () => {
 			var fuelSavingsLabel = $('.fuel-savings-label').html();
 
 			//assert
-			fuelSavingsLabel.should.equal('Loss');			
+			fuelSavingsLabel.should.equal('Loss');
 		});
 	});
 });

@@ -3,7 +3,7 @@ export default class DateHelper {
 	static getFormattedDateTime(date) {
 		return `${date.getMonth()}/${date.getDate()} ${date.getHours()}:${this.padLeadingZero(date.getMinutes())}:${this.padLeadingZero(date.getSeconds())}`;
 	}
-	
+
 	static padLeadingZero(value) {
 		return value > 9 ? value : '0' + value;
 	}
