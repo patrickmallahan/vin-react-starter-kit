@@ -85,16 +85,21 @@ Also note that no actual physical files are written to the filesystem during the
 3. If the latest source isn't displaying the console, force a refresh. Sometimes Chrome seems to hold onto a previous version of the sourcemap which will cause you to see stale code.
 
 ### How do I deploy this?
-Before committing, run `npm run build`. This will setup the project for production. It does the following:
+Before committing, type `npm run build`. This will setup the project for production. It does the following:
 * Minifies all JS
 * Sets NODE_ENV to prod so that React is built in production mode
-* Places the resulting built project files into /dist. Point all links to the /dist folder.
+* Places the resulting built project files into /dist. (This is the folder you'll expose to the world).
+
+### Why does the build use npm scripts instead of Gulp?
+In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/).
 
 ##Potential Features Coming Soon...
+* Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
 * Normalize project name in Title, URL on Vin React Framework
 * Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`
 * Integrate Karma for in-browser tests
 * Run npm command to delete the example app  
+* Implement ideas from [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js)  
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
 * Inject TrackJS into index.html <head> upon build (avoids adding noise in dev)  
 * Generate IDs automatically to assist QA automation  
