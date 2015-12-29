@@ -8,7 +8,7 @@ React is a lightweight library, so to build real apps, you need more. This start
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
-| [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
+| [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser using Node. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
 |[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | | | [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
 | [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
@@ -18,13 +18,20 @@ React is a lightweight library, so to build real apps, you need more. This start
 The starter kit includes a working example app that puts all of the above to use.
 
 ## Get Started
-1. **Install [ Node](https://nodejs.org) and [Git](https://git-scm.com/downloads).**
-2. **Clone the project.**  `git clone https://github.com/coryhouse/vin-javascript-starter-kit.git`.
-3. **Install packages.** `npm install`. 
+1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/vin-javascript-starter-kit#initial-machine-setup).
+2. **Clone the project**. Runs this in the directory where you'd like to get started: `git clone https://github.com/coryhouse/vin-react-starter-kit.git`. Alternatively, you can download the latest release from the [Releases page](https://github.com/coryhouse/vin-react-starter-kit/releases) and unzip the files to your desired directory. The advantage to cloning is you can type `git pull` later and receive any updates to this starter kit.  
+3. **Install Node packages.** `npm install`. 
 4. **Run the example app**. Type `npm start -s` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
 5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
- 
+
+##Initial Machine Setup
+It takes a few different tools to make Node run smoothly on Windows. Here's the steps. You'll only have to do this once.
+1. **Install [Node](https://nodejs.org)**.  
+2. **Install [Git](https://git-scm.com/downloads)**.  
+3. **Install [Python 2.7](https://www.python.org/downloads/)**. Browser-sync (and various other Node modules) rely on node-gyp, which requires Python on Windows.  
+4. **Install C++ Compiler - Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop. This C++ compiler is used to compile browser-sync (and various other Node modules).  
+
 ##Folder Structure
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
 
@@ -45,6 +52,9 @@ server.js - Development webserver configuration using BrowserSync and Webpack
 webpack.config.js - Webpack config   
 
 ##FAQ
+## Why does this exist?
+I'm trying to assist with [JavaScript Fatigue](https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.1luolx2ao). (Yes, the post claims "Boilerplates & generators are not the answer", but I'm convinced it's the best approach available for now. Building a real app with React requires a number of decisions. This starter kit codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
+
 ### I just want an empty starter kit.
 This starter kit includes an example app so you can see how everything hangs together on a real app. To create an empty project, you can delete the following:  
 1. Components in src/components  
@@ -93,12 +103,17 @@ Before committing, type `npm run build`. This will setup the project for product
 ### Why does the build use npm scripts instead of Gulp?
 In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/).
 
+### I'm getting an error when running npm install: Failed to locate "CL.exe"
+On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
+
 ##Potential Features Coming Soon...
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
 * Normalize project name in Title, URL on Vin React Framework
+* Implement lessons from HTML5 Boilerplate  
 * Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`
 * Integrate Karma for in-browser tests
 * Run npm command to delete the example app  
+* Add coveralls and associated badges  
 * Implement ideas from [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js)  
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
 * Inject TrackJS into index.html <head> upon build (avoids adding noise in dev)  
