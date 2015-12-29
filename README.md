@@ -55,6 +55,9 @@ webpack.config.js - Webpack config
 ## Why does this exist?
 I'm trying to assist with [JavaScript Fatigue](https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.1luolx2ao). (Yes, the post claims "Boilerplates & generators are not the answer", but I'm convinced it's the best approach available for now. Building a real app with React requires a number of decisions. This starter kit codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
 
+###What command line should I use?
+This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
+
 ### I just want an empty starter kit.
 This starter kit includes an example app so you can see how everything hangs together on a real app. To create an empty project, you can delete the following:  
 1. Components in src/components  
