@@ -13,11 +13,11 @@
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "create-dist": "mkdir dist && cd dist && mkdir js && mkdir styles",
     "build:html": "node tools/buildHtml.js",
-    "build:sass": "node-sass --output dist/styles src/styles/styles.scss",
-    "watch:sass": "npm run build:sass --watch",
+    "build:sass": "node-sass --quiet --output dist/styles src/styles/styles.scss --source-map true --output-style compressed",
     "prebuild": "npm run clean-dist && npm run build:html && npm run build:sass",
-    "build": "node tools/build.js",
-    "test": "NODE_ENV=test mocha --watch --reporter progress --compilers js:babel/register --recursive \"./src/**/*.spec.js\"",
+    "build": "node tools/build.js -s",
+    "test": "NODE_ENV=test mocha --reporter progress --compilers js:babel/register --recursive \"./src/**/*.spec.js\"",
+    "test:watch": "npm run test -- -w",
     "coverage-es5": "NODE_ENV=test istanbul cover _mocha -- --compilers js:babel/register --recursive \"./src\"  --reporter min",
     "coverage-es6": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/isparta cover node_modules/.bin/_mocha --recursive \"./src\" --reporter min",
     "open-coverage": "npm run coverage-es5 && open coverage/lcov-report/index.html"
@@ -39,6 +39,7 @@
     "browser-sync": "^2.10.0",
     "chai": "^3.3.0",
     "cheerio": "^0.19.0",
+    "colors": "^1.1.2",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
@@ -59,6 +60,7 @@
     "watch": "^0.16.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-hot-middleware": "^2.6.0",
+    "yargs": "^3.31.0"
   }
 }
