@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm run remove-dist",
     "start": "parallelshell 'npm run test' 'npm run open'",
-    "open": "NODE_ENV=development node server",
+    "open": "node tools/server.js",
     "lint": "eslint src",
     "lint:watch": "watch 'npm run lint' src",
     "clean-dist": "npm run remove-dist && npm run create-dist",
