@@ -116,7 +116,6 @@ On Windows, you need to install extra dependencies for browser-sync to build and
 
 ##Potential Features Coming Soon...
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
-* Normalize project name in Title, URL on Vin React Framework
 * Implement lessons from HTML5 Boilerplate  
 * Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`
 * Integrate Karma for in-browser tests
