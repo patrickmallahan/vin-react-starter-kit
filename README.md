@@ -115,27 +115,24 @@ In short, Gulp is an unnecessary abstraction that creates more problems than it 
 On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
 
 ##Potential Features Coming Soon...
+* Package.json documentation including scripts  
+* Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`  
+* Growl support when running tests and linting, plus associated docs  
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
-* Implement lessons from HTML5 Boilerplate  
-* Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`
 * Integrate Karma for in-browser tests
 * Run npm command to delete the example app  
 * Add coveralls and associated badges  
-* Implement ideas from [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js)  
+* Make list of ideas to implement from: [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js), Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [React Starter Kit](http://www.reactstarterkit.com),  [Webpack React Starter](https://github.com/webpack/react-starter), and HTML5 Boilerplate        
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
-* Inject TrackJS into index.html <head> upon build (avoids adding noise in dev)  
 * Generate IDs automatically to assist QA automation  
-* Implement ideas from [Webpack React Starter](https://github.com/webpack/react-starter)  
 * Add favicon.ico to supress 404  
-* Package.json documentation including scripts  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
-* Pagespeed and other features from Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/) and [React Starter Kit](http://www.reactstarterkit.com)
+* Add Pagespeed
 * Use Yeoman / npm for easy updates and config
 * [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email) when [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 2.0 comes out of beta
-* Time travel debugging
+* Time-travel debugging
 * Cache busting bundle naming
-* Growl support
 * GraphQL and Relay
 * Organize with devops to run prod build step
 * Bootstrap
