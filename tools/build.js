@@ -1,48 +1,35 @@
 //More info on Webpack's Node API here: https://webpack.github.io/docs/node.js-api.html
 var webpack = require('webpack');
 var webpackConfigBuilder = require('../webpack.config');
-var webpackConfig = webpackConfigBuilder('production');
 var colors = require('colors');
-var argv = require('yargs').argv;
-var inSilentMode = argv.s; //set to true when -s is passed on the command line
+var args = require('yargs').argv;
 
-if (!inSilentMode) {
-  console.log('Generating minified bundle for production use via Webpack...'.bold.blue);
-}
+process.env.NODE_ENV='production'; //this assures React is built in prod mode and that the Babel dev config doesn't apply.
 
-var handleFatalError = function(error) {
-  console.log(error.bold.red);
-  return 1;
-}
-
-var handleWarnings = function(warnings) {
-  console.log('Webpack generated the following warnings: '.bold.yellow);
-  warnings.map(warning => console.log(warning.yellow));
-};
-
-var handleSoftErrors = function(errors) {
-  errors.map(errors => console.log(error.red));
-};
+var webpackConfig = webpackConfigBuilder('production');
 
 webpack(webpackConfig).run((err, stats) => {
-  if (err) {
-    return handleFatalError(err);
+  var inSilentMode = args.s; //set to true when -s is passed on the command
+
+  if (!inSilentMode) console.log('Generating minified bundle for production use via Webpack...'.bold.blue);
+
+  if (err) { //so a fatal error occurred. Stop here.
+    console.log(error.bold.red);
+    return 1;
   }
 
   var jsonStats = stats.toJson();
 
-  if (jsonStats.errors.length > 0) {
-    return handleSoftErrors(jsonStats.errors);
+  if (jsonStats.hasErrors) return jsonStats.errors.map(error => console.log(error.red));
+
+  if (jsonStats.hasWarnings && !inSilentMode) {
+    console.log('Webpack generated the following warnings: '.bold.yellow);
+    jsonStats.warnings.map(warning => console.log(warning.yellow));
   }
 
-  if (jsonStats.warnings.length > 0) {
-    //For now, not displaying warnings. Seems like it's all noise.
-    if (!inSilentMode) { //suppress warnings in silent mode.
-      handleWarnings(jsonStats.warnings);
-    }
-  }
+  if (!inSilentMode) console.log('Webpack stats: ' + stats.toString());
 
   //if we got this far, the build succeeded.
-  console.log('Your app has been compiled in production mode and written to /dist. It\'s now ready for commit.'.green.bold);
+  console.log('Your app has been compiled in production mode and written to /dist. It\'s ready to commit.'.green.bold);
   return 0;
 });
