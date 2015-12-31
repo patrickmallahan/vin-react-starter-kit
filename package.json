@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "prestart": "npm run remove-dist",
-    "start": "parallelshell 'npm run test' 'npm run open'",
+    "start": "parallelshell \"npm run test\" \"npm run open\"",
     "open": "node tools/server.js",
     "lint": "eslint src",
     "lint:watch": "watch 'npm run lint' src",
