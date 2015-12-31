@@ -19,9 +19,14 @@ The starter kit includes a working example app that puts all of the above to use
 
 ## Get Started
 1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/vin-javascript-starter-kit#initial-machine-setup).
-2. **Clone the project**. Run this on the command line in the directory where you'd like to get started: `git clone https://github.com/coryhouse/vin-react-starter-kit.git`. Alternatively, you can download the latest release from the [Releases page](https://github.com/coryhouse/vin-react-starter-kit/releases) and unzip the files to your desired directory. The advantage to cloning is you can type `git pull` later and receive any updates to this starter kit.  
-3. **Install Node packages.** `npm install`. 
-4. **Run the example app**. Type `npm start -s` in the root of your project (same dir where you just ran `npm install`). This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
+2. **Clone the project**.  
+`git clone https://github.com/coryhouse/vin-react-starter-kit.git`.  
+Run that on the command line in the directory where you'd like to get started. Alternatively, you can download the latest release from the [Releases page](https://github.com/coryhouse/vin-react-starter-kit/releases) and unzip the files to your desired directory. The advantage to cloning is you can type `git pull` later and receive any updates to this starter kit.  
+3. **Install Node packages.**  
+`npm install`
+4. **Run the example app**.  
+`npm start`  
+This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
 5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
 
