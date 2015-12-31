@@ -38,8 +38,8 @@ It takes a few different tools to make Node run smoothly on Windows. **You only 
 4. **Install C++ Compiler**. Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop. This C++ compiler is used to compile browser-sync (and various other Node modules).  
 
 ##FAQ
-## Why does this exist?
-I'm trying to assist with [JavaScript Fatigue](https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.1luolx2ao). (Yes, the post claims "Boilerplates & generators are not the answer", but I'm convinced it's the best approach available for now. Building a real app with React requires a number of decisions. This starter kit codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
+###Why does this exist?
+This starter kit implements best practices like testing, minification, bundling, and so on. It codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
 
 ###What command line should I use?
 This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
