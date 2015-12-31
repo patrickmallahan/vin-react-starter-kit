@@ -26,7 +26,7 @@ The starter kit includes a working example app that puts all of the above to use
 6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
 
 ##Initial Machine Setup
-It takes a few different tools to make Node run smoothly on Windows. Here's the steps. You'll only have to do this once.  
+It takes a few different tools to make Node run smoothly on Windows. **You only have to do this once**.  
 1. **Install [Node](https://nodejs.org)**.  
 2. **Install [Git](https://git-scm.com/downloads)**.  
 3. **Install [Python 2.7](https://www.python.org/downloads/)**. Browser-sync (and various other Node modules) rely on node-gyp, which requires Python on Windows.  
