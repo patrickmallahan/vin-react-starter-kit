@@ -9,7 +9,8 @@ React is a lightweight library, so to build real apps, you need more. This start
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
 | [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser using Node. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
-|[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | | | [TrackJS](http://trackjs.com) |  JS error tracking in production  | |
+|[TrackJS](http://www.trackjs.com) | JavaScript error tracking. Reports available at TrackJS.com. See Cory for credentials | |  
+|[Istanbul](https://github.com/gotwarlost/istanbul) | Code coverage data | | | 
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
 | [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
 | [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
@@ -22,7 +23,7 @@ The starter kit includes a working example app that puts all of the above to use
 2. **Clone the project**.  
 `git clone https://github.com/coryhouse/vin-react-starter-kit.git`.  
 Run that on the command line in the directory where you'd like to get started. Alternatively, you can download the latest release from the [Releases page](https://github.com/coryhouse/vin-react-starter-kit/releases) and unzip the files to your desired directory. The advantage to cloning is you can type `git pull` later and receive any updates to this starter kit.  
-3. **Install Node packages.**  
+3. **Install Node packages**.  
 `npm install`
 4. **Run the example app**.  
 `npm start`  
@@ -37,7 +38,14 @@ It takes a few different tools to make Node run smoothly on Windows. **You only 
 3. **Install [Python 2.7](https://www.python.org/downloads/)**. Browser-sync (and various other Node modules) rely on node-gyp, which requires Python on Windows.  
 4. **Install C++ Compiler**. Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop. This C++ compiler is used to compile browser-sync (and various other Node modules).  
 
-##Folder Structure
+##FAQ
+###Why does this exist?
+This starter kit implements best practices like testing, minification, bundling, and so on. It codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
+
+###What command line should I use?
+This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
+
+###Can you explain the folder structure?
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
 
 **/actions** - Redux actions. List of distinct actions that can occur in the app.  
@@ -48,20 +56,37 @@ It takes a few different tools to make Node run smoothly on Windows. **You only 
 **/reducers** - Redux reducers  
 **/store** - Redux store configuration  
 **/styles** - Stylesheets  
+**/tools** - Node scripts that run build related tools.
 .babelrc - Babel configuration  
 .editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
 .eslintrc - ESLint configuration  
 package.json - npm configuration. Lists npm packages  
 README.md - This file.  
 server.js - Development webserver configuration using BrowserSync and Webpack  
-webpack.config.js - Webpack config   
+webpack.config.js - Webpack config  
 
-##FAQ
-## Why does this exist?
-I'm trying to assist with [JavaScript Fatigue](https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.1luolx2ao). (Yes, the post claims "Boilerplates & generators are not the answer", but I'm convinced it's the best approach available for now. Building a real app with React requires a number of decisions. This starter kit codifies a long list of decisions that you no longer have to make to get rolling. It also saves you from the long, painful process of wiring it all together into an automated dev environment.
+###What do the scripts in package.json do?
+Unfortunately, I can't comment the scripts in package.json inline because the JSON spec doesn't support comments, so I'm providing info on what each script in package.json does here.  
 
-###What command line should I use?
-This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
+| **Script** | **Description** |
+|----------|-------|
+| prestart | Runs automatically before start. Calls remove-dist script which deletes the dist folder. This helps remind you to run the build script before committing since the dist folder will be deleted if you dont. ;) |
+| start | Runs tests, lints, starts dev webserver, and opens the app in your default browser. |
+| open | Opens the app in your default browser. |
+| lint | Runs ESLint. |
+| lint:watch | Runs ESLint and watches all files so that they are automatically linted upon save. |
+| clean-dist | Removes everything from the dist folder. |
+| remove-dist | Deletes the dist folder |
+| create-dist | Creates the dist folder and the necessary subfolders. |
+| build:html | Adds trackJS tracking script and copies to /dist. |
+| build:sass | Compiles SASS, minifies, generates sourcemap, and stores in /dist. |
+| prebuild | Runs automatically before build script (due to naming convention). Cleans dist folder, builds html, and builds sass. |
+| build | Bundles all JavaScript using webpack and writes it to /dist. |
+| build:verbose | Same as above, but verbose so you can see all the details happening including warnings. |
+| test" | Runs tests (files ending in .spec.js) using Mocha and outputs results to the command line. Watches all files so tests are re-run upon save. |
+| coverage-es5 | Displays code coverage data based on the resulting ES5 code that was compiled by Babel. Writes report to /coverage. This makes it slightly less accurate than the script below, but it seems to provide better error feedback, so leaving here to help with debugging. Suggest normally running coverage-es6 script. |
+| coverage-es6 | Displays code coverage data on your original source code. Writes report to /coverage. |
+| open-coverage | Runs the code coverage and then opens it in your default browser. |
 
 ### I just want an empty starter kit.
 This starter kit includes an example app so you can see how everything hangs together on a real app. To create an empty project, you can delete the following:  
