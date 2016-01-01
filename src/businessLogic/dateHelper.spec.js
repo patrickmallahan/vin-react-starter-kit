@@ -11,7 +11,7 @@ describe('Date Helper', () => {
             let date = new Date(99,5,24,11,33,30,0);
 
             //assert
-            DateHelper.getFormattedDateTime(date).should.equal('5/24 11:33:30');
+            DateHelper.getFormattedDateTime(date).should.equal('6/24 11:33:30');
         });
 
         it('pads single digit minute and second values with leading zeros', () => {
@@ -20,7 +20,7 @@ describe('Date Helper', () => {
             let date = new Date(99,5,4,11,3,2,0);
 
             //assert
-            DateHelper.getFormattedDateTime(date).should.equal('5/4 11:03:02');
+            DateHelper.getFormattedDateTime(date).should.equal('6/4 11:03:02');
         });
     });
 });
