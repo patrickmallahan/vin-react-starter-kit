@@ -1,8 +1,7 @@
 {
   "name": "vin-react-starter-kit",
   "version": "1.0.0",
-  "description": "Starter kit for creating client-side apps using React at Vinsolutions",
-  "main": "main.js",
+  "description": "Starter kit for creating React apps at Vinsolutions",
   "scripts": {
     "prestart": "npm run remove-dist",
     "start": "parallelshell \"npm run test\" \"npm run open\"",
