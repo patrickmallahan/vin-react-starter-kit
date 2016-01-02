@@ -8,19 +8,19 @@ describe('Date Helper', () => {
         it('returns mm/dd hh:mm:ss formatted time when passed a date', () => {
             //arrange
             //The 7 numbers specify the year, month, day, hour, minute, second, and millisecond, in that order
-            let date = new Date(99,5,24,11,33,30,0);
+            let date = new Date(99,0,24,11,33,30,0);
 
             //assert
-            DateHelper.getFormattedDateTime(date).should.equal('6/24 11:33:30');
+            DateHelper.getFormattedDateTime(date).should.equal('1/24 11:33:30');
         });
 
         it('pads single digit minute and second values with leading zeros', () => {
             //arrange
             //The 7 numbers specify the year, month, day, hour, minute, second, and millisecond, in that order
-            let date = new Date(99,5,4,11,3,2,0);
+            let date = new Date(99,0,4,11,3,2,0);
 
             //assert
-            DateHelper.getFormattedDateTime(date).should.equal('6/4 11:03:02');
+            DateHelper.getFormattedDateTime(date).should.equal('1/4 11:03:02');
         });
     });
 });
