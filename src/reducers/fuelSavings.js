@@ -3,20 +3,20 @@ import calculator from '../businessLogic/fuelSavingsCalculator';
 import dateHelper from '../businessLogic/dateHelper';
 
 const initialState = {
-    newMpg: 25,
-    tradeMpg: 20,
-    newPpg: 2.00,
-    tradePpg: 2.10,
-    milesDriven: null,
-    milesDrivenTimeframe: 'week',
-    displayResults: false,
-    dateModified: null,
-    necessaryDataIsProvidedToCalculateSavings: false,
-    savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-    }
+  newMpg: null,
+  tradeMpg: null,
+  newPpg: null,
+  tradePpg: null,
+  milesDriven: null,
+  milesDrivenTimeframe: 'week',
+  displayResults: false,
+  dateModified: null,
+  necessaryDataIsProvidedToCalculateSavings: false,
+  savings: {
+      monthly: 0,
+      annual: 0,
+      threeYear: 0
+  }
 };
 
 //IMPORTANT: Note that with Redux, state should NEVER be changed.
