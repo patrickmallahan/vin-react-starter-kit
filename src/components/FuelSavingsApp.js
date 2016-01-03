@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
 
-class FuelSavingsCalculatorForm extends React.Component {
+class FuelSavingsApp extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,11 +22,11 @@ class FuelSavingsCalculatorForm extends React.Component {
   }
 
   save() {
-    this.props.actions.saveFuelSavings(this.props.fuelSavings);
+    this.props.actions.saveFuelSavings(this.props.fuelSavingsAppState);
   }
 
   render() {
-    let settings = this.props.fuelSavings;
+    let settings = this.props.fuelSavingsAppState;
 
     return (
       <div>
@@ -76,9 +76,9 @@ class FuelSavingsCalculatorForm extends React.Component {
   }
 }
 
-FuelSavingsCalculatorForm.propTypes = {
+FuelSavingsApp.propTypes = {
   actions: PropTypes.object.isRequired,
-  fuelSavings: PropTypes.object.isRequired
+  fuelSavingsAppState: PropTypes.object.isRequired
 };
 
-export default FuelSavingsCalculatorForm;
+export default FuelSavingsApp;

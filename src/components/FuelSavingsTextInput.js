@@ -15,10 +15,10 @@ class FuelSavingsTextInput extends Component {
 	render() {
 		return (
 			<input className="small"
-				type="text"
-				placeholder={this.props.placeholder}
-				value={this.props.value}
-				onChange={this.handleChange} />
+             type="text"
+             placeholder={this.props.placeholder}
+             value={this.props.value}
+             onChange={this.handleChange} />
 		);
 	}
 }
