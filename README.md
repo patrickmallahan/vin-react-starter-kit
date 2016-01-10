@@ -144,7 +144,7 @@ On Windows, you need to install extra dependencies for browser-sync to build and
 * Growl support when running tests and linting, plus associated docs  
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
 * Integrate Karma for in-browser tests
-* Run npm command to delete the example app  
+* Run npm command or Yeoman generator to delete the example app  
 * Add coveralls and associated badges  
 * Make list of ideas to implement from: [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js), Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [React Starter Kit](http://www.reactstarterkit.com),  [Webpack React Starter](https://github.com/webpack/react-starter), and HTML5 Boilerplate        
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
