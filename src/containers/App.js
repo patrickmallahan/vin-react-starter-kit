@@ -21,6 +21,7 @@ App.propTypes = {
   fuelSavingsAppState: PropTypes.object.isRequired
 };
 
+//Tell Redux exactly what state slice we want from the global state
 function mapStateToProps(state) {
   return {
     fuelSavingsAppState: state.fuelSavingsAppState
