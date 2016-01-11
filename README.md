@@ -135,6 +135,9 @@ Before committing, type `npm run build`. This will setup the project for product
 ### Why does the build use npm scripts instead of Gulp?
 In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/).
 
+### Why does package.json reference the exact version?
+This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor semver, so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
+
 ### I'm getting an error when running npm install: Failed to locate "CL.exe"
 On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
 
