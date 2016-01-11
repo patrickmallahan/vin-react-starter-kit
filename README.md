@@ -21,15 +21,18 @@ The starter kit includes a working example app that puts all of the above to use
 ## Get Started
 1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/vin-javascript-starter-kit#initial-machine-setup).
 2. **Clone the project**.  
-`git clone https://github.com/coryhouse/vin-react-starter-kit.git`.  
-Run that on the command line in the directory where you'd like to get started. Alternatively, you can download the latest release from the [Releases page](https://github.com/coryhouse/vin-react-starter-kit/releases) and unzip the files to your desired directory. The advantage to cloning is you can type `git pull` later and receive any updates to this starter kit.  
-3. **Install Node packages**.  
+Open the command line of your choice and change to the directory where you'd like to start your project. Then clone the project: `git clone https://github.com/coryhouse/vin-react-starter-kit.git`.  
+3. **Rename directory**  
+Rename the 'vin-react-starter-kit' directory that was just created to your project's name. 
+4. **Change directory**
+`cd` into your projects root directory (the folder you just renamed).
+5. **Install Node packages**.  
 `npm install`
-4. **Run the example app**.  
-`npm start`  
+6. **Run the example app**.  
+`npm start`
 This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
-5. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
-6. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
+7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
+8. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
 
 ##Initial Machine Setup
 1. **Install [Node](https://nodejs.org)**.  
@@ -140,6 +143,9 @@ This assures that the build won't break when some new version is released. Unfor
 
 ### I'm getting an error when running npm install: Failed to locate "CL.exe"
 On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
+
+### How do I kill the watch process on the Windows command line?
+If you're in Webstorm, click the red x next to the terminal and then hit Alt+F12 to reopen the terminal. Unfortunately, Ctrl+C doesn't seem to work on the windows command line. (Another reason why I recommend using Git Bash).
 
 ##Potential Features Coming Soon...
 * Package.json documentation including scripts  
