@@ -15,7 +15,7 @@ var bundler = webpack(webpackConfig);
 browserSync({
   port: 9080,
   ui: {
-    port: 8081
+    port: 9081
   },
   server: {
     baseDir: 'src',
