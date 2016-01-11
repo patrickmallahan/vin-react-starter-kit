@@ -19,16 +19,17 @@ React is a lightweight library, so to build real apps, you need more. This start
 The starter kit includes a working example app that puts all of the above to use.
 
 ## Get Started
-1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/vin-javascript-starter-kit#initial-machine-setup).
-2. **Clone the project**.  
+1. **Initial Machine Setup**  
+First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/vin-javascript-starter-kit#initial-machine-setup).
+2. **Clone the project**  
 Open the command line of your choice and change to the directory where you'd like to start your project. Then clone the project: `git clone https://github.com/coryhouse/vin-react-starter-kit.git`.  
 3. **Rename directory**  
 Rename the 'vin-react-starter-kit' directory that was just created to your project's name. 
-4. **Change directory**
+4. **Change directory**  
 `cd` into your projects root directory (the folder you just renamed).
-5. **Install Node packages**.  
+5. **Install Node packages**   
 `npm install`
-6. **Run the example app**.  
+6. **Run the example app**  
 `npm start`
 This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
 7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
