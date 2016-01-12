@@ -34,5 +34,9 @@ describe('Number Formatter', () => {
 		it('returns 0 if passed 0', () => {
 			NumberFormatter.getFormattedNumber(0).should.equal(0);
 		});
+
+    it('returns empty string if passed empty string', () => {
+      NumberFormatter.getFormattedNumber('').should.equal('');
+    });
 	});
 });
