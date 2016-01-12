@@ -16,9 +16,9 @@
     "build:sass": "node-sass --quiet --output dist/styles src/styles/styles.scss --source-map true --output-style compressed",
     "prebuild": "npm run clean-dist && npm run build:html && npm run build:sass",
     "build": "node tools/build.js && npm run open:dist",
-    "test": "cross-env NODE_ENV=test mocha --reporter progress --compilers js:babel/register --recursive \"./src/**/*.spec.js\"",
+    "test": "cross-env NODE_ENV=test mocha --reporter progress --compilers js:babel/register --recursive \"./src/**/*.spec.js\" --slow 75",
     "test:watch": "npm run test -- --watch",
-    "coverage-es5": "cross-env NODE_ENV=test istanbul cover _mocha -- --compilers js:babel/register --recursive \"./src\"  --reporter min",
+    "coverage-es5": "cross-env NODE_ENV=test istanbul cover _mocha -- --compilers js:babel/register --recursive \"./src/**/*.spec.js\"  --reporter min",
     "coverage-es6": "cross-env NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/isparta cover node_modules/.bin/_mocha --recursive \"./src\" --reporter min",
     "open-coverage": "npm run coverage-es5 && open coverage/lcov-report/index.html"
   },
