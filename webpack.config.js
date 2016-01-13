@@ -41,15 +41,24 @@ var getEntry = function(env) {
   return entry;
 };
 
+var getOutputPath = function(env) {
+  switch(env) {
+    case 'production':
+      return '/dist/js';
+    default:
+      return ''; //irrelevant since physical files are only output for prod.
+  }
+};
+
 module.exports = function getConfig(env) {
   return {
     debug: true,
-    devtool: env == 'production' ? 'source-map' : 'eval-source-map', //more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
+    devtool: env == 'production' ? 'source-map' : 'cheap-module-eval-source-map', //more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
     noInfo: true, //set to false to see a list of every file being bundled.
     entry: getEntry(env),
     target: env == 'test' ? 'node' : 'web', //necessary per https://webpack.github.io/docs/testing.html#compile-and-test
     output: {
-      path: __dirname + '/dist/js',
+      path: __dirname + getOutputPath(env),
       publicPath: '/js/',
       filename: 'bundle.js'
     },
