@@ -5,9 +5,9 @@ var browserSync = require('browser-sync');
 
 // Run Browsersync
 browserSync({
-  port: 9080,
+  port: 3000,
   ui: {
-    port: 9081
+    port: 3001
   },
   server: {
     baseDir: 'dist'
