@@ -148,6 +148,9 @@ On Windows, you need to install extra dependencies for browser-sync to build and
 ### How do I kill the watch process on the Windows command line?
 If you're in Webstorm, click the red x next to the terminal and then hit Alt+F12 to reopen the terminal. Unfortunately, Ctrl+C doesn't seem to work on the windows command line. (Another reason why I recommend using Git Bash).
 
+### I can't access the external URL for Browsersync
+To hit the external URL, all devices must be on the same LAN. So this means your dev machine needs to be on Wifi (since you likely can't connect any tablet or phone to Ethernet. If you dev machine is on wired ethernet, it's on a separate LAN from the Wifi so the two devices won't be able to communicate.
+
 ##Potential Features Coming Soon...
 * Package.json documentation including scripts  
 * Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`  
