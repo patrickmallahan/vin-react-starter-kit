@@ -48,6 +48,9 @@ This starter kit implements best practices like testing, minification, bundling,
 ###What command line should I use?
 This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
 
+###How do I keep my app updated with the latest features of the starter kit?
+Be sure to clone this repo to get started. Then, anytime you want to get the latest version of this repo, type `git pull` on the command line in the root of your project. This will merge in all updates.
+
 ###Can you explain the folder structure?
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
 
