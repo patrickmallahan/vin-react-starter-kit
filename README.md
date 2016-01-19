@@ -73,7 +73,7 @@ README.md - This file.
 server.js - Development webserver configuration using BrowserSync and Webpack  
 webpack.config.js - Webpack config  
 
-###How do I enable CORS on our existing APIs?
+###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
 
 Add this to your API's Global.ascx:
