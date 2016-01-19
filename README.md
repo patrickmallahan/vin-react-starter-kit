@@ -55,23 +55,34 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 
 ###Can you explain the folder structure?
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
-
-**/actions** - Redux actions. List of distinct actions that can occur in the app.  
-**/businessLogic** - Plain old JavaScript objects. Strive to place as much of your code here as you can (easier to test, framework agnostic). These are like POCOs, but JS.  
-**/components** - React components  
-**/constants** - Application constants  
-**/containers** - Redux app container  
-**/reducers** - Redux reducers  
-**/store** - Redux store configuration  
-**/styles** - Stylesheets  
-**/tools** - Node scripts that run build related tools.
-.babelrc - Babel configuration  
-.editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
-.eslintrc - ESLint configuration  
-package.json - npm configuration. Lists npm packages  
-README.md - This file.  
-server.js - Development webserver configuration using BrowserSync and Webpack  
-webpack.config.js - Webpack config  
+```
+.
+├── .babelrc                  # Configures Babel
+├── .editorconfig             # Conigures editor rules
+├── .eslintrc                 # Configures ESLint
+├── .gitignore                # Tells git which files to ignore
+├── README.md                 # This file.
+├── dist                      # Folder where the build script places the built app. Use this in prod.
+├── package.json              # Package configuration. The list of 3rd party libraries and utilities
+├── src                       # Source code
+│   ├── actions               # Flux/Redux actions. List of distinct actions that can occur in the app.  
+│   ├── businessLogic         # Plain old JS objects (POJOs). Pure logic. No framework specific code here.
+│   ├── components            # React components
+│   ├── constants             # Application constants including constants for Redux
+│   ├── containers            # App container for Redux
+│   ├── favicon.ico           # favicon to keep your browser from throwing a 404 during dev. Not actually used in prod build.
+│   ├── index.html            # Start page 
+│   ├── index.js              # Entry point for your app
+│   ├── reducers              # Redux reducers. Your state is altered here based on actions
+│   ├── store                 # Redux store configuration
+│   └── styles                # CSS Styles, typically written in Sass
+├── tools                     # Node scripts that run build related tools
+│   ├── build.js              # Runs the production build
+│   ├── buildHtml.js          # Builds index.html
+│   ├── distServer.js         # Starts webserver and opens final built app that's in dist in your default browser
+│   ├── srcServer.js          # Starts dev webserver with hot reloading and opens your app in your default browser
+└── webpack.config.js         # Configures webpack
+```
 
 ###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
