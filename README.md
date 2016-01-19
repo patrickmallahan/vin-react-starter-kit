@@ -74,8 +74,9 @@ server.js - Development webserver configuration using BrowserSync and Webpack
 webpack.config.js - Webpack config  
 
 ###How do I enable CORS on our existing APIs?
-This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This mean you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from your dev web server. Here's how:
-1. Add the following to your Global.ascx:
+This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
+
+Add this to your API's Global.ascx:
 ```c#
 protected void Application_BeginRequest(object sender, EventArgs e)
 {
@@ -88,11 +89,10 @@ private void EnableCrossOriginRequestsFromLocalhost()
    HttpContext.Current.Response.AddHeader("Access-Control-Allow-Credentials", "true");
 }
 ```
-
-2. Call the API using [Superagent](https://www.npmjs.com/package/superagent) like this:
+Call the API using [Superagent](https://www.npmjs.com/package/superagent) like this:
 ```js
 request
-  .get('http://motosnap.com/CarDashboard/API/CRMServiceBase/v1/customers/attachments/list?customerId=212746634')
+  .get('http://yourApiUrlHere...')
   .accept('json')
   .withCredentials()
   .end(function(err, res) {
