@@ -34,6 +34,7 @@ Rename the 'vin-react-starter-kit' directory that was just created to your proje
 This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
 7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 8. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
+9. **Enable CORS on any APIs you need to call** 
 
 ##Initial Machine Setup
 1. **Install [Node](https://nodejs.org)**.  
@@ -67,6 +68,36 @@ package.json - npm configuration. Lists npm packages
 README.md - This file.  
 server.js - Development webserver configuration using BrowserSync and Webpack  
 webpack.config.js - Webpack config  
+
+###How do I enable CORS on our existing APIs?
+This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This mean you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from your dev web server. Here's how:
+1. Add the following to your Global.ascx:
+```c#
+protected void Application_BeginRequest(object sender, EventArgs e)
+{
+   if (HttpContext.Current.Request.IsLocal) EnableCrossOriginRequestsFromLocalhost();
+}
+
+private void EnableCrossOriginRequestsFromLocalhost()
+{
+   HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", HttpContext.Current.Request.UrlReferrer.GetLeftPart(UriPartial.Authority));
+   HttpContext.Current.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+}
+```
+
+2. Call the API using [Superagent](https://www.npmjs.com/package/superagent) like this:
+```js
+request
+  .get('http://motosnap.com/CarDashboard/API/CRMServiceBase/v1/customers/attachments/list?customerId=212746634')
+  .accept('json')
+  .withCredentials()
+  .end(function(err, res) {
+    if (err) {
+      alert(err);
+    }
+    alert(res.body);
+  });
+```
 
 ###What do the scripts in package.json do?
 Unfortunately, I can't comment the scripts in package.json inline because the JSON spec doesn't support comments, so I'm providing info on what each script in package.json does here.  
