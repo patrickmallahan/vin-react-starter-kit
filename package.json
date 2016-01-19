@@ -25,6 +25,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "object-assign": "^4.0.1",
     "react": "0.14.6",
     "react-dom": "0.14.6",
     "react-redux": "4.0.6",
