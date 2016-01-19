@@ -6,7 +6,7 @@ React is a lightweight library, so to build real apps, you need more. This start
 |  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components    |[Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) [Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
 |  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial](https://egghead.io/series/getting-started-with-redux)    |
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
-| [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
+| [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Quick Webpack How-to](https://github.com/petehunt/webpack-howto) [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
 | [Mocha](http://mochajs.org) | Automated tests with [Chai](http://chaijs.com/) for assertions and [Cheerio](https://www.npmjs.com/package/cheerio) for DOM testing without a browser using Node. | [Pluralsight Course](https://www.pluralsight.com/courses/testing-javascript) |
 |[TrackJS](http://www.trackjs.com) | JavaScript error tracking. Reports available at TrackJS.com. See Cory for credentials | |  
@@ -14,7 +14,7 @@ React is a lightweight library, so to build real apps, you need more. This start
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. Using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) for additional React specific linting rules. | |
 | [SASS](http://sass-lang.com/) | Compiled CSS styles with variables, functions, and more. | [Pluralsight Course](https://www.pluralsight.com/courses/better-css)|
 | [Editor Config](http://editorconfig.org) | Enforce consistent editor settings (spaces vs tabs, etc). | [IDE Plugins](http://editorconfig.org/#download) |
-| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction)  |
+| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | [Pluralsight course](https://www.pluralsight.com/courses/npm-build-tool-introduction) [Why not Gulp?](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n)  |
 
 The starter kit includes a working example app that puts all of the above to use.
 
@@ -41,6 +41,7 @@ This will run the automated build process, start up a webserver, and open the ap
 2. **Install [Git](https://git-scm.com/downloads)**.  
 3. **Install [Python 2.7](https://www.python.org/downloads/)**. Browser-sync (and various other Node modules) rely on node-gyp, which requires Python on Windows.  
 4. **Install C++ Compiler**. Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop. The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
+5. **Configure your Editor for React**. [Install the appropriate plugin](https://github.com/facebook/react/wiki/Complementary-Tools#jsx-integrations) and [configure your editor](https://github.com/kriasoft/react-starter-kit/blob/master/docs/how-to-configure-text-editors.md).
 
 ##FAQ
 ###Why does this exist?
@@ -48,6 +49,9 @@ This starter kit implements best practices like testing, minification, bundling,
 
 ###What command line should I use?
 This kit works on both the Windows DOS command line or in Git Bash on Windows. Git Bash is installed along with Git. 
+
+###How do I keep my app updated with the latest features of the starter kit?
+Be sure to clone this repo to get started. Then, anytime you want to get the latest version of this repo, type `git pull` on the command line in the root of your project. This will merge in all updates.
 
 ###Can you explain the folder structure?
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
@@ -178,6 +182,9 @@ On Windows, you need to install extra dependencies for browser-sync to build and
 
 ### How do I kill the watch process on the Windows command line?
 If you're in Webstorm, click the red x next to the terminal and then hit Alt+F12 to reopen the terminal. Unfortunately, Ctrl+C doesn't seem to work on the windows command line. (Another reason why I recommend using Git Bash).
+
+### I can't access the external URL for Browsersync
+To hit the external URL, all devices must be on the same LAN. So this means your dev machine needs to be on Wifi (since you likely can't connect any tablet or phone to Ethernet. If you dev machine is on wired ethernet, it's on a separate LAN from the Wifi so the two devices won't be able to communicate.
 
 ##Potential Features Coming Soon...
 * Package.json documentation including scripts  
