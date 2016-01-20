@@ -31,7 +31,7 @@ Rename the 'vin-react-starter-kit' directory that was just created to your proje
 `npm install`
 6. **Run the example app**  
 `npm start`
-This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
+This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which suppresses unnecessary messages during the build.
 7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 8. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
 9. **Enable CORS on any APIs you need to call** 
@@ -58,7 +58,7 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 ```
 .
 ├── .babelrc                  # Configures Babel
-├── .editorconfig             # Conigures editor rules
+├── .editorconfig             # Configures editor rules
 ├── .eslintrc                 # Configures ESLint
 ├── .gitignore                # Tells git which files to ignore
 ├── README.md                 # This file.
