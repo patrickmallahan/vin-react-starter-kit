@@ -84,6 +84,9 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 └── webpack.config.js         # Configures webpack
 ```
 
+###Where are the files being served from when I run `npm start`?
+Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, the app is served from the /dist directory.
+
 ###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
 
