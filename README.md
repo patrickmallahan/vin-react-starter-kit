@@ -86,7 +86,7 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 
 ###Where are the files being served from when I run `npm start`?
 Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, the app is served from the /dist directory.
-
+ 
 ###How is Sass being converted into CSS and landing in the browser?
 Magic! Okay, more specifically: Webpack handles it like this:
  1. The sass-loader compiles Sass into CSS
