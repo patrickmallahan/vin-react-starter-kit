@@ -1,6 +1,6 @@
 {
   "name": "vin-react-starter-kit",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Starter kit for creating React apps at Vinsolutions",
   "scripts": {
     "prestart": "npm run remove-dist",
@@ -9,12 +9,10 @@
     "open:dist": "node tools/distServer.js",
     "lint": "eslint src",
     "lint:watch": "watch 'npm run lint' src",
-    "clean-dist": "npm run remove-dist && npm run create-dist",
+    "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
-    "create-dist": "mkdir dist && cd dist && mkdir js && mkdir styles",
     "build:html": "node tools/buildHtml.js",
-    "build:sass": "node-sass --quiet --output dist/styles src/styles/styles.scss --source-map true --output-style compressed",
-    "prebuild": "npm run clean-dist && npm run build:html && npm run build:sass",
+    "prebuild": "npm run clean-dist && npm run build:html",
     "build": "node tools/build.js && npm run open:dist",
     "test": "cross-env NODE_ENV=test mocha --reporter progress --compilers js:babel/register --recursive \"./src/**/*.spec.js\" --slow 75",
     "test:watch": "npm run test -- --watch",
@@ -25,7 +23,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
-    "object-assign": "^4.0.1",
+    "object-assign": "4.0.1",
     "react": "0.14.6",
     "react-dom": "0.14.6",
     "react-redux": "4.0.6",
