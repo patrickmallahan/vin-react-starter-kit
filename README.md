@@ -87,6 +87,15 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 ###Where are the files being served from when I run `npm start`?
 Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, the app is served from the /dist directory.
 
+###How is Sass being converted into CSS and landing in the browser?
+Magic! Okay, more specifically: Webpack handles it like this:
+ 1. The sass-loader compiles Sass into CSS
+ 2. Webpack bundles the compiled CSS into bundle.js. Sounds odd, but it works! 
+ 3. Loads styles into the <head> of index.html via JavaScript. This is why you don't see a stylesheet reference in index.html. In fact, if you disable JavaScript in your browser, you'll see the styles don't load either. This process is performed for both dev (`npm start`) and production (`npm run build`). Oh, and since we're generating source maps, you can even see the original Sass source in [compatible browsers](http://thesassway.com/intermediate/using-source-maps-with-sass).
+ 
+###I don't like the magic you just described above. I simply want to use a CSS file.
+No problem. Reference your CSS file in index.html, and add a step to the build process to copy your CSS file over to the same relative location /dist as part of the build step. But be forwarned, you lose style hot reloading with this approach.
+
 ###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
 
@@ -185,11 +194,11 @@ Before committing, type `npm run build`. This will setup the project for product
 * Sets NODE_ENV to prod so that React is built in production mode
 * Places the resulting built project files into /dist. (This is the folder you'll expose to the world).
 
-### Why does the build use npm scripts instead of Gulp?
-In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/).
+### Why does the build use npm scripts instead of Gulp or Grunt?
+In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n).
 
 ### Why does package.json reference the exact version?
-This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor semver, so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
+This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor [Semantic Versioning](http://semver.org), so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
 
 ### I'm getting an error when running npm install: Failed to locate "CL.exe"
 On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
@@ -201,8 +210,6 @@ If you're in Webstorm, click the red x next to the terminal and then hit Alt+F12
 To hit the external URL, all devices must be on the same LAN. So this means your dev machine needs to be on Wifi (since you likely can't connect any tablet or phone to Ethernet. If you dev machine is on wired ethernet, it's on a separate LAN from the Wifi so the two devices won't be able to communicate.
 
 ##Potential Features Coming Soon...
-* Package.json documentation including scripts  
-* Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`  
 * Growl support when running tests and linting, plus associated docs  
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
 * Integrate Karma for in-browser tests
@@ -211,13 +218,11 @@ To hit the external URL, all devices must be on the same LAN. So this means your
 * Make list of ideas to implement from: [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js), Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [React Starter Kit](http://www.reactstarterkit.com),  [Webpack React Starter](https://github.com/webpack/react-starter), and HTML5 Boilerplate        
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
 * Generate IDs automatically to assist QA automation  
-* Add favicon.ico to supress 404  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
-* Add Pagespeed
+* Pagespeed
 * Use Yeoman / npm for easy updates and config
 * [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email) when [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 2.0 comes out of beta
-* Time-travel debugging
 * Cache busting bundle naming
 * GraphQL and Relay
 * Organize with devops to run prod build step
