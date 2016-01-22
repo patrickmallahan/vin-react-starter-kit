@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
+import api from '../api/api';
 
 const FuelSavingsApp = (props) => {
   const save = function () {
@@ -13,6 +14,12 @@ const FuelSavingsApp = (props) => {
 
   const fuelSavingsKeypress = function (name, value) {
     props.actions.calculateFuelSavings(props, name, value);
+  };
+
+  const getCustomerAttachments = function() {
+    api.getCustomerAttachments(212746634).then(function(response) {
+      alert('Response status: ' + response.status);
+    });
   };
 
   const settings = props.fuelSavingsAppState;
@@ -53,14 +60,14 @@ const FuelSavingsApp = (props) => {
           <td><label>Date Modified</label></td>
           <td>{settings.dateModified}</td>
         </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
 
-      <hr/>
+        <hr/>
 
-      {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
-      <input type="submit" value="Save" onClick={save} />
-    </div>
+        {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
+        <input type="submit" value="Save" onClick={this.save} /> <a href="#" onClick={this.getCustomerAttachments}>Make AJAX call</a>
+      </div>
   );
 };
 
