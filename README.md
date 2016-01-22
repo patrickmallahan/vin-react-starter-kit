@@ -34,7 +34,7 @@ Rename the 'vin-react-starter-kit' directory that was just created to your proje
 This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which suppresses unnecessary messages during the build.
 7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 8. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
-9. **Enable CORS on any APIs you need to call** 
+9. **[Enable CORS on the APIs](https://github.com/coryhouse/vin-react-starter-kit#how-do-i-call-our-existing-web-apis) you need to call** 
 
 ##Initial Machine Setup
 1. **Install [Node](https://nodejs.org)**.  
@@ -227,7 +227,7 @@ To hit the external URL, all devices must be on the same LAN. So this means your
 * GraphQL and Relay
 * Organize with devops to run prod build step
 * Bootstrap
-* Superagent or jQuery for API calls
+* Superagent, Axios, or jQuery for API calls
 * Authentication example  
 * Immutable.js  
 * Isomorphic Rendering  
