@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
+import api from '../api/api';
 
 class FuelSavingsApp extends React.Component {
   constructor(props) {
@@ -23,6 +24,12 @@ class FuelSavingsApp extends React.Component {
 
   save() {
     this.props.actions.saveFuelSavings(this.props.fuelSavingsAppState);
+  }
+
+  getCustomerAttachments() {
+    api.getCustomerAttachments(212746634).then(function(response) {
+      alert('Response status: ' + response.status);
+    });
   }
 
   render() {
@@ -70,7 +77,7 @@ class FuelSavingsApp extends React.Component {
         <hr/>
 
         {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
-        <input type="submit" value="Save" onClick={this.save} />
+        <input type="submit" value="Save" onClick={this.save} /> <a href="#" onClick={this.getCustomerAttachments}>Make AJAX call</a>
       </div>
     );
   }
