@@ -33,7 +33,7 @@ dist
 .idea
 
 #VSCode metadata
-.vscodeI
+.vscode
 
 # Mac files
 .DS_Store

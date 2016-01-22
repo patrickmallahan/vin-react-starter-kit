@@ -8,13 +8,13 @@ process.env.NODE_ENV='production'; //this assures React is built in prod mode an
 
 var webpackConfig = webpackConfigBuilder('production');
 
-webpack(webpackConfig).run((err, stats) => {
+webpack(webpackConfig).run(function(err, stats) {
   var inSilentMode = args.s; //set to true when -s is passed on the command
 
   if (!inSilentMode) console.log('Generating minified bundle for production use via Webpack...'.bold.blue);
 
   if (err) { //so a fatal error occurred. Stop here.
-    console.log(error.bold.red);
+    console.log(err.bold.red);
     return 1;
   }
 

@@ -4,7 +4,7 @@ React is a lightweight library, so to build real apps, you need more. This start
 | **Tech** | **Description** |**Learn More**|
 |----------|-------|---|
 |  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components    |[Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) [Pluralsight Courses](https://www.pluralsight.com/search?q=react&categories=course)  |
-|  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial](https://egghead.io/series/getting-started-with-redux)    |
+|  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable stores. Useful on larger apps with complex data flows. Alternative to [Facebook's Flux](https://facebook.github.io/flux/docs/overview.html).| [Tutorial Video](https://egghead.io/series/getting-started-with-redux) [Code-based tutorial](https://github.com/happypoulp/redux-tutorial)   |
 |  [Babel](http://babeljs.io) |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today     | [ES6 REPL](https://babeljs.io/repl/), [ES6 vs ES5](http://es6-features.org), [ES6 Katas](http://es6katas.org), [Pluralsight course](http://www.pluralsight.com/courses/javascript-fundamentals-es6)    |
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. Supports hot reloading. | [Quick Webpack How-to](https://github.com/petehunt/webpack-howto) [Pluralsight Course](https://www.pluralsight.com/courses/webpack-fundamentals)|
 | [BrowserSync](http://www.browsersync.com) | Lightweight development HTTP server that supports synchronized testing and debugging on multiple devices. | [Intro vid](https://www.youtube.com/watch?time_continue=1&v=heNWfzc7ufQ)|
@@ -31,10 +31,10 @@ Rename the 'vin-react-starter-kit' directory that was just created to your proje
 `npm install`
 6. **Run the example app**  
 `npm start`
-This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which supresses unnecessary messages during the build.
+This will run the automated build process, start up a webserver, and open the application in your default browser. When doing development with this kit, you'll want to keep the command line open at all times so that your code is rebuilt and tests run automatically every time you hit save. Note: The -s flag is optional. It enables silent mode which suppresses unnecessary messages during the build.
 7. **Review the example app.** This starter kit includes a working example app that calculates fuel savings. Note how all source code is placed under /src. Tests are placed alongside the file under test. The final built app is placed under /dist. These are the files you run in production.
 8. **Delete the example app files.** Once you're comfortable with how the example app works, you can [delete those files and begin creating your own app](https://github.com/coryhouse/vin-javascript-starter-kit#i-just-want-an-empty-starter-kit). You can always refer to this repo for the example app code that you deleted.
-9. **Enable CORS on any APIs you need to call** 
+9. **[Enable CORS on the APIs](https://github.com/coryhouse/vin-react-starter-kit#how-do-i-call-our-existing-web-apis) you need to call** 
 
 ##Initial Machine Setup
 1. **Install [Node](https://nodejs.org)**.  
@@ -55,25 +55,48 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 
 ###Can you explain the folder structure?
 **Note that the files that start with a dot below will be hidden by default in Windows.** [Here's how to see them](http://windows.microsoft.com/en-us/windows/show-hidden-files#show-hidden-files=windows-7). Or type `ls -la` in Git Bash.
+```
+.
+├── .babelrc                  # Configures Babel
+├── .editorconfig             # Configures editor rules
+├── .eslintrc                 # Configures ESLint
+├── .gitignore                # Tells git which files to ignore
+├── README.md                 # This file.
+├── dist                      # Folder where the build script places the built app. Use this in prod.
+├── package.json              # Package configuration. The list of 3rd party libraries and utilities
+├── src                       # Source code
+│   ├── actions               # Flux/Redux actions. List of distinct actions that can occur in the app.  
+│   ├── businessLogic         # Plain old JS objects (POJOs). Pure logic. No framework specific code here.
+│   ├── components            # React components
+│   ├── constants             # Application constants including constants for Redux
+│   ├── containers            # App container for Redux
+│   ├── favicon.ico           # favicon to keep your browser from throwing a 404 during dev. Not actually used in prod build.
+│   ├── index.html            # Start page 
+│   ├── index.js              # Entry point for your app
+│   ├── reducers              # Redux reducers. Your state is altered here based on actions
+│   ├── store                 # Redux store configuration
+│   └── styles                # CSS Styles, typically written in Sass
+├── tools                     # Node scripts that run build related tools
+│   ├── build.js              # Runs the production build
+│   ├── buildHtml.js          # Builds index.html
+│   ├── distServer.js         # Starts webserver and opens final built app that's in dist in your default browser
+│   ├── srcServer.js          # Starts dev webserver with hot reloading and opens your app in your default browser
+└── webpack.config.js         # Configures webpack
+```
 
-**/actions** - Redux actions. List of distinct actions that can occur in the app.  
-**/businessLogic** - Plain old JavaScript objects. Strive to place as much of your code here as you can (easier to test, framework agnostic). These are like POCOs, but JS.  
-**/components** - React components  
-**/constants** - Application constants  
-**/containers** - Redux app container  
-**/reducers** - Redux reducers  
-**/store** - Redux store configuration  
-**/styles** - Stylesheets  
-**/tools** - Node scripts that run build related tools.
-.babelrc - Babel configuration  
-.editorconfig - Editor configuration. Enforces standards like tabs/spaces across editors  
-.eslintrc - ESLint configuration  
-package.json - npm configuration. Lists npm packages  
-README.md - This file.  
-server.js - Development webserver configuration using BrowserSync and Webpack  
-webpack.config.js - Webpack config  
+###Where are the files being served from when I run `npm start`?
+Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, the app is served from the /dist directory.
+ 
+###How is Sass being converted into CSS and landing in the browser?
+Magic! Okay, more specifically: Webpack handles it like this:
+ 1. The sass-loader compiles Sass into CSS
+ 2. Webpack bundles the compiled CSS into bundle.js. Sounds odd, but it works! 
+ 3. Loads styles into the <head> of index.html via JavaScript. This is why you don't see a stylesheet reference in index.html. In fact, if you disable JavaScript in your browser, you'll see the styles don't load either. This process is performed for both dev (`npm start`) and production (`npm run build`). Oh, and since we're generating source maps, you can even see the original Sass source in [compatible browsers](http://thesassway.com/intermediate/using-source-maps-with-sass).
+ 
+###I don't like the magic you just described above. I simply want to use a CSS file.
+No problem. Reference your CSS file in index.html, and add a step to the build process to copy your CSS file over to the same relative location /dist as part of the build step. But be forwarned, you lose style hot reloading with this approach.
 
-###How do I enable CORS on our existing APIs?
+###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
 
 Add this to your API's Global.ascx:
@@ -171,11 +194,11 @@ Before committing, type `npm run build`. This will setup the project for product
 * Sets NODE_ENV to prod so that React is built in production mode
 * Places the resulting built project files into /dist. (This is the folder you'll expose to the world).
 
-### Why does the build use npm scripts instead of Gulp?
-In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/).
+### Why does the build use npm scripts instead of Gulp or Grunt?
+In short, Gulp is an unnecessary abstraction that creates more problems than it solves. [Here's why](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.vtaziro8n).
 
 ### Why does package.json reference the exact version?
-This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor semver, so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
+This assures that the build won't break when some new version is released. Unfortunately, many package authors don't properly honor [Semantic Versioning](http://semver.org), so instead, as new versions are released, I'll test them and then introduce them into the starter kit. But yes, this means when you do `npm update` no new dependencies will be pulled down. You'll have to update package.json with the new version manually.
 
 ### I'm getting an error when running npm install: Failed to locate "CL.exe"
 On Windows, you need to install extra dependencies for browser-sync to build and install successfully. Follow the getting started steps above to assure you have the necessary dependencies on your machine.
@@ -187,8 +210,6 @@ If you're in Webstorm, click the red x next to the terminal and then hit Alt+F12
 To hit the external URL, all devices must be on the same LAN. So this means your dev machine needs to be on Wifi (since you likely can't connect any tablet or phone to Ethernet. If you dev machine is on wired ethernet, it's on a separate LAN from the Wifi so the two devices won't be able to communicate.
 
 ##Potential Features Coming Soon...
-* Package.json documentation including scripts  
-* Document folder structure using `tree -I 'node_modules|.idea|.git|coverage' -a`  
 * Growl support when running tests and linting, plus associated docs  
 * Integrate ideas from React Starter Kit such like [separate tool folder for scripts](https://github.com/kriasoft/react-starter-kit/tree/master/tools)
 * Integrate Karma for in-browser tests
@@ -197,18 +218,16 @@ To hit the external URL, all devices must be on the same LAN. So this means your
 * Make list of ideas to implement from: [React-starter](https://github.com/webpack/react-starter/blob/master/make-webpack-config.js), Google's [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [React Starter Kit](http://www.reactstarterkit.com),  [Webpack React Starter](https://github.com/webpack/react-starter), and HTML5 Boilerplate        
 * Integrate [React testing tools](https://twitter.com/_ericelliott/status/677636069366603777?s=03)
 * Generate IDs automatically to assist QA automation  
-* Add favicon.ico to supress 404  
 * Istanbul 1.0 Upgrade (to [eliminate Isparta shim](https://github.com/gotwarlost/istanbul/releases))  
 * Sass Linting
-* Add Pagespeed
+* Pagespeed
 * Use Yeoman / npm for easy updates and config
 * [Babel 6 upgrade](http://www.2ality.com/2015/11/configuring-babel6.html?utm_source=javascriptweekly&utm_medium=email) when [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 2.0 comes out of beta
-* Time-travel debugging
 * Cache busting bundle naming
 * GraphQL and Relay
 * Organize with devops to run prod build step
 * Bootstrap
-* Superagent or jQuery for API calls
+* Superagent, Axios, fetch (native, but polyfilled via https://github.com/github/fetch), or jQuery for API calls
 * Authentication example  
 * Immutable.js  
 * Isomorphic Rendering  
