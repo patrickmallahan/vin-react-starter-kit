@@ -66,6 +66,7 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 ├── package.json              # Package configuration. The list of 3rd party libraries and utilities
 ├── src                       # Source code
 │   ├── actions               # Flux/Redux actions. List of distinct actions that can occur in the app.  
+│   ├── api                   # Centralized place to make AJAX calls. Includes example call. 
 │   ├── businessLogic         # Plain old JS objects (POJOs). Pure logic. No framework specific code here.
 │   ├── components            # React components
 │   ├── constants             # Application constants including constants for Redux
