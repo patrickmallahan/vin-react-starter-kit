@@ -103,16 +103,24 @@ Add this to your API's Global.ascx:
 ```c#
 protected void Application_BeginRequest(object sender, EventArgs e)
 {
-   if (HttpContext.Current.Request.IsLocal) EnableCrossOriginRequestsFromLocalhost();
+    if (HttpContext.Current.Request.IsLocal) EnableCrossOriginRequestsFromLocalhost(HttpContext.Current.Request);
 }
 
-private void EnableCrossOriginRequestsFromLocalhost()
+private void EnableCrossOriginRequestsFromLocalhost(HttpRequest request)
 {
-   HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", HttpContext.Current.Request.UrlReferrer.GetLeftPart(UriPartial.Authority));
-   HttpContext.Current.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+    var response = HttpContext.Current.Response;
+       response.AddHeader("Access-Control-Allow-Origin", request.UrlReferrer.GetLeftPart(UriPartial.Authority));
+       response.AddHeader("Access-Control-Allow-Credentials", "true");
+    if (request.HttpMethod == "OPTIONS")
+    {
+        response.AddHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
+        response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+        response.AddHeader("Access-Control-Max-Age", "1728000");
+        response.End();
+    }
 }
 ```
-Call the API using [Superagent](https://www.npmjs.com/package/superagent) like this:
+Call the API using the JavaScript library of your choice. Use jQuery if you already need it for other reasons. If you don't need jQuery, there are small options like [Superagent](https://www.npmjs.com/package/superagent) like this:
 ```js
 request
   .get('http://yourApiUrlHere...')
