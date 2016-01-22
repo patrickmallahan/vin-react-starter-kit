@@ -109,8 +109,8 @@ protected void Application_BeginRequest(object sender, EventArgs e)
 private void EnableCrossOriginRequestsFromLocalhost(HttpRequest request)
 {
     var response = HttpContext.Current.Response;
-       response.AddHeader("Access-Control-Allow-Origin", request.UrlReferrer.GetLeftPart(UriPartial.Authority));
-       response.AddHeader("Access-Control-Allow-Credentials", "true");
+    response.AddHeader("Access-Control-Allow-Origin", request.UrlReferrer.GetLeftPart(UriPartial.Authority));
+    response.AddHeader("Access-Control-Allow-Credentials", "true");
     if (request.HttpMethod == "OPTIONS")
     {
         response.AddHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
@@ -120,19 +120,7 @@ private void EnableCrossOriginRequestsFromLocalhost(HttpRequest request)
     }
 }
 ```
-Call the API using the JavaScript library of your choice. Use jQuery if you already need it for other reasons. If you don't need jQuery, there are small options like [Superagent](https://www.npmjs.com/package/superagent) like this:
-```js
-request
-  .get('http://yourApiUrlHere...')
-  .accept('json')
-  .withCredentials()
-  .end(function(err, res) {
-    if (err) {
-      alert(err);
-    }
-    alert(res.body);
-  });
-```
+The example project includes /api/api.js. This file uses [Axios]() to make AJAX calls. It's recommended to centralize your API calls there. See the example in api.js.
 
 ###What do the scripts in package.json do?
 Unfortunately, I can't comment the scripts in package.json inline because the JSON spec doesn't support comments, so I'm providing info on what each script in package.json does here.  
