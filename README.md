@@ -155,13 +155,17 @@ This starter kit includes an example app so you can see how everything hangs tog
 Don't want to use Redux? See the next question for some steps on removing Redux.
 
 ### Do I have to use Redux?
-Nope. Redux is useful for applications with more complex data flows. If your app is simple, Redux may be overkill. In that case, you can uninstall Redux and delete the following folders:
+Nope. Redux is useful for applications with more complex data flows. If your app is simple, Redux may be overkill. In that case, you can uninstall Redux and delete the following folders (and their contents):
 * actions
 * constants
 * reducers
 * containers
+* store
 
-In main.js, reference your top level component (instead of Redux's root container at ./containers/root).
+Then, update index.js:
+ 1. `npm uninstall redux react-redux`. 
+ 2. Remove the following imports: `import configureStore from './store/configureStore';` and `import { Provider } from 'react-redux';`
+ 3. Create a new top level component and reference it in the render method. 
 
 ### Why are test files placed alongside the file under test (instead of centralized)? 
 Streamlined automated testing is a core feature of this starter kit. All tests are placed in files that end in .spec.js. Spec files are placed in the same directory as the file under test. Why?
