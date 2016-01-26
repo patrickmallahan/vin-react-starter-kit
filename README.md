@@ -42,6 +42,12 @@ This will run the automated build process, start up a webserver, and open the ap
 3. **Install [Python 2.7](https://www.python.org/downloads/)**. Browser-sync (and various other Node modules) rely on node-gyp, which requires Python on Windows.  
 4. **Install C++ Compiler**. Open Visual Studio and go to File -> New -> Project -> Visual C++ -> Install Visual C++ Tools for Windows Desktop. The C++ compiler is used to compile browser-sync (and perhaps other Node modules).
 5. **Configure your Editor for React**. [Install the appropriate plugin](https://github.com/facebook/react/wiki/Complementary-Tools#jsx-integrations) and [configure your editor](https://github.com/kriasoft/react-starter-kit/blob/master/docs/how-to-configure-text-editors.md).
+6. Add two lines to your [Windows hosts file](https://www.rackspace.com/knowledge_center/article/modify-your-hosts-file) for motosnap.com: 
+```
+127.0.0.1 motosnap.com
+127.0.0.1 www.motosnap.com
+```
+The api configuration example (in /src/api/api.js) assumes that you're running VinConnect and its APIs locally at motosnap.com, so these host entries make sure cross origin calls like this succeed: `motosnap.com/CarDashboard/API/CRMServiceBase/v1/customers/attachments/list?customerId=212746634`
 
 ##FAQ
 ###Why does this exist?
