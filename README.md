@@ -127,7 +127,7 @@ private void EnableCrossOriginRequestsFromLocalhost(HttpRequest request)
     }
 }
 ```
-The example project includes /api/api.js. This file uses [Axios]() to make AJAX calls. It's recommended to centralize your API calls there. See the example in api.js.
+The example project includes /api/api.js. This file uses Axios to make AJAX calls. It's recommended to centralize your API calls there. See the example in api.js. api.js properly sets the base url based on whether it's running locally, but be sure to add a hosts entry for motosnap.com (as outlined in the initial machine setup) to assure it works properly.
 
 ###What do the scripts in package.json do?
 Unfortunately, I can't comment the scripts in package.json inline because the JSON spec doesn't support comments, so I'm providing info on what each script in package.json does here.  
