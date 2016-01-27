@@ -92,13 +92,13 @@ Be sure to clone this repo to get started. Then, anytime you want to get the lat
 ```
 
 ###Where are the files being served from when I run `npm start`?
-Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, the app is served from the /dist directory.
+Webpack serves your app in memory when you run `npm start`. No physical files are written. However, the web root is /src, so you can reference files under /src in index.html. When the app is built using `npm run build`, physical files are written to /dist and the app is served from /dist.
  
 ###How is Sass being converted into CSS and landing in the browser?
 Magic! Okay, more specifically: Webpack handles it like this:
  1. The sass-loader compiles Sass into CSS
  2. Webpack bundles the compiled CSS into bundle.js. Sounds odd, but it works! 
- 3. Loads styles into the <head> of index.html via JavaScript. This is why you don't see a stylesheet reference in index.html. In fact, if you disable JavaScript in your browser, you'll see the styles don't load either. This process is performed for both dev (`npm start`) and production (`npm run build`). Oh, and since we're generating source maps, you can even see the original Sass source in [compatible browsers](http://thesassway.com/intermediate/using-source-maps-with-sass).
+ 3. Loads styles into the &lt;head&gt; of index.html via JavaScript. This is why you don't see a stylesheet reference in index.html. In fact, if you disable JavaScript in your browser, you'll see the styles don't load either. This process is performed for both dev (`npm start`) and production (`npm run build`). Oh, and since we're generating source maps, you can even see the original Sass source in [compatible browsers](http://thesassway.com/intermediate/using-source-maps-with-sass).
  
 ###I don't like the magic you just described above. I simply want to use a CSS file.
 No problem. Reference your CSS file in index.html, and add a step to the build process to copy your CSS file over to the same relative location /dist as part of the build step. But be forwarned, you lose style hot reloading with this approach.
@@ -138,7 +138,6 @@ Unfortunately, I can't comment the scripts in package.json inline because the JS
 | start | Runs tests, lints, starts dev webserver, and opens the app in your default browser. |
 | open | Opens the app in your default browser. |
 | lint | Runs ESLint. |
-| lint:watch | Runs ESLint and watches all files so that they are automatically linted upon save. |
 | clean-dist | Removes everything from the dist folder. |
 | remove-dist | Deletes the dist folder |
 | create-dist | Creates the dist folder and the necessary subfolders. |
@@ -146,10 +145,8 @@ Unfortunately, I can't comment the scripts in package.json inline because the JS
 | build:sass | Compiles SASS, minifies, generates sourcemap, and stores in /dist. |
 | prebuild | Runs automatically before build script (due to naming convention). Cleans dist folder, builds html, and builds sass. |
 | build | Bundles all JavaScript using webpack and writes it to /dist. |
-| build:verbose | Same as above, but verbose so you can see all the details happening including warnings. |
 | test" | Runs tests (files ending in .spec.js) using Mocha and outputs results to the command line. Watches all files so tests are re-run upon save. |
-| coverage-es5 | Displays code coverage data based on the resulting ES5 code that was compiled by Babel. Writes report to /coverage. This makes it slightly less accurate than the script below, but it seems to provide better error feedback, so leaving here to help with debugging. Suggest normally running coverage-es6 script. |
-| coverage-es6 | Displays code coverage data on your original source code. Writes report to /coverage. |
+| coverage | Displays code coverage data based on the resulting ES5 code that was compiled by Babel. Writes report to /coverage. |
 | open-coverage | Runs the code coverage and then opens it in your default browser. |
 
 ### I just want an empty starter kit.
