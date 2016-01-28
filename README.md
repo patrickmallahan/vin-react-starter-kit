@@ -238,7 +238,6 @@ To hit the external URL, all devices must be on the same LAN. So this means your
 * GraphQL and Relay
 * Organize with devops to run prod build step
 * Bootstrap
-* Superagent, Axios, fetch (native, but polyfilled via https://github.com/github/fetch), or jQuery for API calls
 * Authentication example  
 * Immutable.js  
 * Isomorphic Rendering  
