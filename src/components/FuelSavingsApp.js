@@ -64,10 +64,9 @@ const FuelSavingsApp = (props) => {
 
         <hr/>
 
-        {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
         <input type="submit" value="Save" onClick={save} /> <a href="#" onClick={onFetchCustomersClick}>Fetch customers via AJAX</a>
-
         {settings.customers.length > 0 && <p> {settings.customers.length} customers found.</p>}
+        {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
       </div>
   );
 };
