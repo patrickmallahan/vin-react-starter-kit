@@ -1,13 +1,13 @@
 {
   "name": "vin-react-starter-kit",
-  "version": "3.0.0",
+  "version": "2.1.0",
   "description": "Starter kit for creating React apps at Vinsolutions",
   "scripts": {
     "prestart": "npm run remove-dist",
-    "start": "parallelshell \"npm run test:watch\" \"npm run open:src\"",
+    "start": "parallelshell \"npm run lint:tools\" \"npm run test:watch\" \"npm run open:src\"",
     "open:src": "node tools/srcServer.js",
     "open:dist": "node tools/distServer.js",
-    "lint": "eslint src",
+    "lint:tools": "eslint webpack.config.js tools",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "node tools/buildHtml.js",

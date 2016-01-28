@@ -1,5 +1,7 @@
 // This script copies src/index.html into /dist/index.html
 // and replaces the trackJs placeholder with the actual trackJS code for use in production.
+// Allowing console calls below since this is a build file.
+/*eslint-disable no-console */
 var fs = require('fs');
 var colors = require('colors');
 var cheerio = require('cheerio');
