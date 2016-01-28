@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import FuelSavingsResults from './FuelSavingsResults';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
-import api from '../api/api';
 
 const FuelSavingsApp = (props) => {
   const save = function () {
@@ -16,16 +15,16 @@ const FuelSavingsApp = (props) => {
     props.actions.calculateFuelSavings(props, name, value);
   };
 
-  const getCustomerAttachments = function() {
-    api.getCustomerAttachments(212746634).then(function(response) {
-      alert('Response status: ' + response.status);
-    });
+  const onFetchCustomersClick = function(event) {
+    event.preventDefault();
+    props.actions.fetchCustomers();
   };
 
   const settings = props.fuelSavingsAppState;
 
   return (
     <div>
+      {settings.ajaxCallInProgress ? <h1>Loading...</h1> : ''}
       <h2>Fuel Savings Analysis</h2>
       <table>
         <tbody>
@@ -66,7 +65,9 @@ const FuelSavingsApp = (props) => {
         <hr/>
 
         {settings.necessaryDataIsProvidedToCalculateSavings ? <FuelSavingsResults savings={settings.savings} /> : null}
-        <input type="submit" value="Save" onClick={this.save} /> <a href="#" onClick={this.getCustomerAttachments}>Make AJAX call</a>
+        <input type="submit" value="Save" onClick={save} /> <a href="#" onClick={onFetchCustomersClick}>Fetch customers via AJAX</a>
+
+        {settings.customers.length > 0 && <p> {settings.customers.length} customers found.</p>}
       </div>
   );
 };

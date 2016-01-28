@@ -100,15 +100,22 @@ No problem. Reference your CSS file in index.html, and add a step to the build p
 ###How do I call our existing Web APIs?
 This starter kit uses a Node based webserver (Webpack's dev server combined with Browsersync). This means you need to enable Cross-origin Resource Sharing (CORS) on any existing IIS hosted APIs so that you can call them from this kit's dev web server. Here's how:  
 
-Add this to your API's Global.ascx:
+Add this to your API's Global.asax:
 ```c#
 protected void Application_BeginRequest(object sender, EventArgs e)
 {
-    if (HttpContext.Current.Request.IsLocal) EnableCrossOriginRequestsFromLocalhost(HttpContext.Current.Request);
+    EnableCrossOriginRequestsFromLocalhost(HttpContext.Current.Request);
 }
 
+/// <summary>
+/// Enables calling IIS-based webservices on localhost from a separate webserver.
+/// Useful for doing front-end development from a separate webserver such as a Node-based webserver.
+/// </summary>
+/// <param name="request"></param>
 private void EnableCrossOriginRequestsFromLocalhost(HttpRequest request)
 {
+    if (!HttpContext.Current.Request.IsLocal) return;
+    if (request.UrlReferrer == null) return; //can't set Access-Control-Allow-Origin header reliably without a referrer so just return. Referrer should always be set when being called from an app under development because the app under development's URL will be sent as the referrer automatically.
     var response = HttpContext.Current.Response;
     response.AddHeader("Access-Control-Allow-Origin", request.UrlReferrer.GetLeftPart(UriPartial.Authority));
     response.AddHeader("Access-Control-Allow-Credentials", "true");
@@ -155,13 +162,17 @@ This starter kit includes an example app so you can see how everything hangs tog
 Don't want to use Redux? See the next question for some steps on removing Redux.
 
 ### Do I have to use Redux?
-Nope. Redux is useful for applications with more complex data flows. If your app is simple, Redux may be overkill. In that case, you can uninstall Redux and delete the following folders:
+Nope. Redux is useful for applications with more complex data flows. If your app is simple, Redux may be overkill. In that case, you can uninstall Redux and delete the following folders (and their contents):
 * actions
 * constants
 * reducers
 * containers
+* store
 
-In main.js, reference your top level component (instead of Redux's root container at ./containers/root).
+Then, update index.js:
+ 1. `npm uninstall redux react-redux redux-thunk`. 
+ 2. Remove the following imports: `import configureStore from './store/configureStore';` and `import { Provider } from 'react-redux';`
+ 3. Create a new top level component and reference it in the render method. 
 
 ### Why are test files placed alongside the file under test (instead of centralized)? 
 Streamlined automated testing is a core feature of this starter kit. All tests are placed in files that end in .spec.js. Spec files are placed in the same directory as the file under test. Why?

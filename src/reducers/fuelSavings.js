@@ -1,4 +1,4 @@
-import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS} from '../constants/ActionTypes';
+import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS, REQUEST_CUSTOMERS, RECEIVE_CUSTOMERS} from '../constants/ActionTypes';
 import calculator from '../businessLogic/fuelSavingsCalculator';
 import dateHelper from '../businessLogic/dateHelper';
 import objectAssign from 'object-assign';
@@ -13,6 +13,8 @@ const initialState = {
   displayResults: false,
   dateModified: null,
   necessaryDataIsProvidedToCalculateSavings: false,
+  ajaxCallInProgress: false,
+  customers: [],
   savings: {
       monthly: 0,
       annual: 0,
@@ -43,6 +45,12 @@ export default function fuelSavingsAppState(state = initialState, action) {
 			}
 
 			return newState;
+
+    case REQUEST_CUSTOMERS:
+      return objectAssign({}, state, { ajaxCallInProgress: true });
+
+    case RECEIVE_CUSTOMERS:
+      return objectAssign({}, state, { ajaxCallInProgress: false, customers: action.customers } );
 
 		default:
 			return state;
